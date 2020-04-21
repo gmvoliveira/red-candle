@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lucifer</title>
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/umb6myh.css">
+</head>
+<body>
+    <div class="header">
+        <div class="form-group">
+            <label for="album" class="form-label">
+                <i class="fa fa-search"></i>
+                <span>Filter album</span>
+            </label>
+            <input id="album" name="album" list="albumlist" type="text" class="form-input form-search" />
+        </div>
+        <nav id="albumlist" class="nav"></nav>
+    </div>
+    <main class="content">
+        <h2>Genres</h2>
+        <div id="genrelist" class="list"></div>
+    </main>
+</body>
+<script type="module" src="resources/js/app.js"></script>
+</html>

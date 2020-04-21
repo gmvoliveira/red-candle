@@ -1,0 +1,12 @@
+{
+  "name": "red-candle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "http-server -a redcandle.test -p 3001 -s",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bag",
+  "license": "ISC"
+}
