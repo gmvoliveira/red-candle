@@ -4,20 +4,28 @@
     <title>Red Candle</title>
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="https://use.typekit.net/umb6myh.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/solid.min.css">
 </head>
 <body>
     <div class="header">
         <div class="form-group">
-            <label for="album" class="form-label">
-                <i class="fa fa-search"></i>
+            <label for="album" class="form-label form-label-search">
                 <span>Filter album</span>
             </label>
-            <input id="album" name="album" list="albumlist" type="text" class="form-input form-search" />
+            <div class="input-group">
+                <span class="input-group-search"><i class="fa fa-search"></i></span>
+                <input id="album" name="album" list="albumlist" type="text" class="form-input form-search" />
+            </div>
         </div>
         <nav id="albumlist" class="nav"></nav>
     </div>
     <main class="content">
         <h2>Genres</h2>
+        <div id="genrelist-empty" class="content-empty">
+            <img src="resources/images/candlestick-holder.svg" style="max-width: 100%" />
+            <p style="margin-top: -3rem; text-align: center; margin-bottom: 0;">Selecteer in de lijst aan de linkerkant een album om de meestgebruikte genres voor een album op te halen.</p>
+        </div>
         <div id="genrelist" class="list"></div>
     </main>
 </body>

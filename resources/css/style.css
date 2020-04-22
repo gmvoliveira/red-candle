@@ -5,7 +5,7 @@
 :root {
     --font-body: ubuntu, sans-serif;
     --font-header: ubuntu, sans-serif;
-    --primary-color: #49E8B1;
+    --primary-color: #FF6A81;
     --black: #232323;
     --white: #ffffff;
     --gray-20: #f4f4f4;
@@ -16,9 +16,14 @@ body {
     display: flex;
     height: 100vh;
     font-family: var(--font-body);
-    font-weight: 700;
     margin: 0;
     padding: 0;
+    line-height: 1.3;
+}
+
+h1, h2, h3, h4, h5, h6,
+button, label {
+    font-weight: 700;
 }
 
 /* Nav */
@@ -29,7 +34,8 @@ body {
     display: flex;
     flex-direction: column;
 }
-.form-label + .form-input {
+.form-label + .form-input,
+.form-label + .input-group {
     margin-top: .5rem;
 }
 .form-input {
@@ -46,6 +52,18 @@ body {
 }
 .form-search {
     padding-left: 3rem;
+}
+.input-group {
+    position: relative;
+}
+.input-group-search {
+    position: absolute;
+    color: var(--primary-color);
+    left: 1rem;
+    font-size: 1.3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 .nav {
     flex-grow: 1;
@@ -70,9 +88,18 @@ body {
 
 /* Content */
 .content {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
     background-color: var(--gray-20);
-    padding: 1rem 2rem;
+    padding: 1rem 3rem;
+}
+.content-empty {
+    max-width: 300px;
+    /* flex-grow: 1; */
+    /* align-self: center; */
+    margin: auto;
+    padding-bottom: 15vh;
 }
 .list-item {
     border-radius: 8px;
