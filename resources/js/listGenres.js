@@ -11,7 +11,7 @@ const renderGenre = (genre, weight) => {
 
 const ListGenres = async query => {
     const genres = await GetGenres(query)
-    if (!genres) return false
+    if (!genres || !genres.length) return false
     
     // Empty genres
     target.innerHTML = null
