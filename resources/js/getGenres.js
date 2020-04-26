@@ -1,11 +1,11 @@
 const GetGenres = async query => {
-    const endpoint = `http://83.160.209.236:9999/album/${query}/suggested_genres`;
+    const endpoint = `http://83.160.209.236:9998/album/${query}/genres?suggest`;
     try {
         const response = await fetch(endpoint)
 
         if(response.ok) {
-            const genres = await response.json()
-            return genres
+            const genres = await response.text()
+            return genres.split(', ')
         }
         throw new Error(`Couldn't retrieve genres`)
     } catch(error) {

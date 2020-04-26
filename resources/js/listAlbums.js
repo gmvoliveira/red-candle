@@ -16,7 +16,7 @@ const renderAlbum = album => {
     `
     button.classList += 'nav-item'
     target.appendChild(button)
-    button.addEventListener('click', () => ListGenres(album.album))
+    button.addEventListener('click', () => ListGenres(album.id))
 
 }
 
