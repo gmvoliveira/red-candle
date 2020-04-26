@@ -23,7 +23,7 @@ const renderAlbum = album => {
 const ListAlbums = async () => {
     const albums = await GetAlbums()
     
-    for (let album of Object.values(albums.results)) {
+    for (let album of Object.values(albums)) {
         renderAlbum(album)
     }
 }

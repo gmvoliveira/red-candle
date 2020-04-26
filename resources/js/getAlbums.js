@@ -7,7 +7,7 @@ const GetAlbums = async () => {
 
         if (response.ok) {
             const list = await response.json()
-            return list
+            return list.results
         }
 
         throw new Error(`Couldn't retrieve list`)
