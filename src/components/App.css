@@ -106,6 +106,7 @@
     flex-grow: 1;
     background-color: var(--gray-20);
     padding: 1rem 3rem;
+    min-width: 500px;
 }
 .content-empty {
     max-width: 300px;
