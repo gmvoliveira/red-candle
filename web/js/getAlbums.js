@@ -1,6 +1,6 @@
 const GetAlbums = async () => {
-    // const endpoint = 'http://83.160.209.236:9998/albums'
-    const endpoint = 'http://83.160.209.236:9998/album/query/genre:🎧 New'
+    const endpoint = 'http://83.160.209.236:8080/album'
+    // const endpoint = 'http://83.160.209.236:9998/album/query/genre:🎧 New'
     // const endpoint = '../albums.json'
     try {
         const response = await fetch(endpoint)
