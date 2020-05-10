@@ -6,15 +6,17 @@ const imageStyle = {
     borderRadius: '6px'
 }
 
-const Album = (album: any) => {
+const Album = (props: any) => {
+    const { album } = props
+
     return (
         <button className="nav-item" onClick={ () => /*GenreList(album.id)*/null }>
             <div className="nav-item-image">
-                <img style={imageStyle} alt="Album Cover" src={`http://83.160.209.236:9998/album/${album.id}/art`} />
+                <img style={imageStyle} alt="Album Cover" src={`http://83.160.209.236:8080/album/${album.id}/art`} />
             </div>
             <div className="nav-item-content">
-                <h3 className="nav-item-title">${album.albumartist}</h3>
-                <span className="nav-item-subtitle">${album.album} - ${album.year}</span>
+                <h3 className="nav-item-title">{album.albumartist}</h3>
+                <span className="nav-item-subtitle">{album.album} - {album.year}</span>
             </div>
         </button>
     );

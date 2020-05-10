@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Albums from './Albums'
 import Album from './Album'
 //import GenreList from './GenreList'
 
 function AlbumList() {
-    let albums = {}
+    const [albums, setAlbums] = useState([])
     
-    async function getAlbums() {
-        const albumlist: any = await Albums()
-        albums = albumlist
-    }
-    getAlbums()
+    useEffect(() => {
+        Albums().then(results => {
+            setAlbums(results)
+        })
+    }, [])
 
-    const navItems = Object.values(albums).map((album) => 
-        <Album album={album} />
+    const navItems = albums.map((album: any) =>
+        <Album key={album.id} album={album} />
     )
     
     return (
