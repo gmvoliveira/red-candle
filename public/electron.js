@@ -1,5 +1,5 @@
 const electron = require("electron");
-const reactDebugger = require('./reactDebugger.js');
+const devTools = require('./devTools.js');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
@@ -12,7 +12,7 @@ function createWindow() {
         height: 720
     });
     
-    reactDebugger.macOS(electron);
+    devTools.macOS(electron);
     mainWindow.loadURL("http://localhost:3000");
     mainWindow.on("closed", () => (mainWindow = null));
 }
