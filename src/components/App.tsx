@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import image from '../images/candlestick-holder.svg';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div>
       <div className="header">

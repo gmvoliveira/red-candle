@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import AlbumType from '../types/Album'
 
 const imageStyle = {
     maxWidth: '100%',
@@ -6,9 +7,9 @@ const imageStyle = {
     borderRadius: '6px'
 }
 
-const Album = (props: any) => {
-    const { album } = props
+type Props = { album: AlbumType }
 
+const Album: React.FC<Props> = ({album}) => {
     return (
         <button className="nav-item" onClick={ () => /*GenreList(album.id)*/null }>
             <div className="nav-item-image">
@@ -19,7 +20,7 @@ const Album = (props: any) => {
                 <span className="nav-item-subtitle">{album.album} - {album.year}</span>
             </div>
         </button>
-    );
+    )
 }
 
-export default Album;
+export default Album

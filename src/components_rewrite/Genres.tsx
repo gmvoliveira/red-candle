@@ -1,5 +1,5 @@
 const Genres = async (query: any) => {
-    const endpoint = `http://83.160.209.236:9998/album/${query}/genres?suggest`;
+    const endpoint = `http://83.160.209.236:9998/album/${query}/genres`;
     try {
         const response = await fetch(endpoint)
 
