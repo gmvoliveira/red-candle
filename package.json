@@ -44,6 +44,7 @@
     "concurrently": "^5.2.0",
     "electron": "^8.2.5",
     "electron-builder": "^22.6.0",
+    "http-server": "^0.12.3",
     "wait-on": "^5.0.0"
   },
   "eslintConfig": {
