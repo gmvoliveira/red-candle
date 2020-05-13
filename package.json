@@ -37,10 +37,13 @@
     "cross-env": "^7.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-scripts": "^3.4.1",
+    "redux": "^4.0.5",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@types/react-redux": "^7.1.8",
     "concurrently": "^5.2.0",
     "electron": "^8.2.5",
     "electron-builder": "^22.6.0",
