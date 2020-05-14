@@ -14,8 +14,9 @@ type Props = { keyDownHandler: any }
 const App: React.FC<Props> = ({keyDownHandler}) => {
     const [albums, setAlbums] = useState([])
 
-    useEffect(() => {
-        Albums().then(data => setAlbums(data))
+    useEffect(() => {  /* This is better. Now there's only two calls.
+    Yet, it should be one, right? So there's fixing to do still. */
+        Albums().then(data => albums.length > 0 ? null : setAlbums(data))
     })
 
     return (
@@ -29,7 +30,7 @@ const App: React.FC<Props> = ({keyDownHandler}) => {
                     <span className="input-group-search">
                       <FontAwesomeIcon icon={faSearch} />
                     </span>
-                        <input id="album" name="album" list="albumlist" type="text" className="form-input form-search" onKeyDown={ keyDownHandler } />
+                        <input id="album" name="album" list="albumlist" type="text" className="form-input form-search" onKeyUp={ keyDownHandler } />
                 </div>
             </div>
             <AlbumList albums={albums} />
