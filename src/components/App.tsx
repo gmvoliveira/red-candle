@@ -46,9 +46,9 @@ const App: React.FC<Props> = ({keyDownHandler}) => {
     )
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
-        keyDownHandler: (e) => {
+        keyDownHandler: (e: any) => {
             dispatch(filterAlbums(e.target.value))
         }
     }

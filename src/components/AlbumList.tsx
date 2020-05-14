@@ -23,7 +23,7 @@ const AlbumList_: React.FC<Props> = ({albums, filterText}) => (
     </nav>
 )
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
     return {
         filterText: state.albumFilter
     }
