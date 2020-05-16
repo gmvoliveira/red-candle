@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 import AlbumList from './AlbumList'
-import GirandoleClient from './Albums'
+import GirandoleClient from '../GirandoleClient'
 import AlbumFilter from './AlbumFilter'
 import GenreSuggestionList from './GenreList'
 
-import './App.css'
-import image from '../images/candlestick-holder.svg'
+import '../App.css'
 
 
 const girandoleClient = new GirandoleClient()
@@ -17,6 +16,7 @@ const App = (props) => {
     const [albums, setAlbums] = useState(null)
     const [genreSuggestions, setGenreSuggestions] = useState(null)
 
+    /* Consider using the `Context API`. */
     useEffect(() => {
         girandoleClient.getAlbums().then(data => setAlbums(data))
     }, [])
@@ -36,13 +36,7 @@ const App = (props) => {
             </div>
             <main className="content">
                 <h2>Genres</h2>
-                <div id="genrelist-empty" className="content-empty">
-                    <img alt="" src={image} style={{maxWidth: '100%'}} />
-                    <p style={{marginTop: '-3rem', textAlign: 'center', marginBottom: 0}}>Selecteer in de lijst aan de linkerkant een album om de meestgebruikte genres voor een album op te halen.</p>
-                </div>
-                <div id="genrelist" className="list">
                     <GenreSuggestionList suggestions={genreSuggestions?.suggested_genres ?? []} />
-                </div>
             </main>
           </div>
     )
