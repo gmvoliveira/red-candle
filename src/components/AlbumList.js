@@ -1,9 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Album from './Album'
-import GenreList from './GenreList'
 
-const AlbumList_ = ({albums, filterText}) => (
+const AlbumList = ({albums, filterText}) => (
     <nav className="nav">
         {albums
             .filter((album) =>
@@ -23,6 +22,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const AlbumList = connect(mapStateToProps)(AlbumList_)
-
-export default AlbumList
+export default connect(mapStateToProps)(AlbumList)

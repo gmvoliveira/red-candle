@@ -14,22 +14,19 @@ const girandoleClient = new GirandoleClient()
 
 
 const App = (props) => {
-    console.log(props.selectedAlbumId)
     const [albums, setAlbums] = useState(null)
     const [genreSuggestions, setGenreSuggestions] = useState(null)
 
     useEffect(() => {
-        if (albums === null) {
-            girandoleClient.getAlbums().then(data => setAlbums(data))
-        }
-    })
+        girandoleClient.getAlbums().then(data => setAlbums(data))
+    }, [])
 
     useEffect(() => {
-        if (props.selectedAlbumId !== null && genreSuggestions === null) {
-            girandoleClient.getSuggestedGenres(props.selectedAlbumId).then(data => setGenreSuggestions(data))
+        if (props.selectedAlbumId !== null) {
+            girandoleClient.getSuggestedGenres(props.selectedAlbumId)
+                .then(data => setGenreSuggestions(data))
         }
-    })
-    console.log(genreSuggestions)
+    }, [props.selectedAlbumId])
 
     return (
         <div>
@@ -40,7 +37,7 @@ const App = (props) => {
             <main className="content">
                 <h2>Genres</h2>
                 <div id="genrelist-empty" className="content-empty">
-                    <img src={image} style={{maxWidth: '100%'}} />
+                    <img alt="" src={image} style={{maxWidth: '100%'}} />
                     <p style={{marginTop: '-3rem', textAlign: 'center', marginBottom: 0}}>Selecteer in de lijst aan de linkerkant een album om de meestgebruikte genres voor een album op te halen.</p>
                 </div>
                 <div id="genrelist" className="list">

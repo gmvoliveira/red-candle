@@ -1,7 +1,4 @@
 import React from 'react'
-import Genres from './Genres'
-
-import image from '../images/candlestick-holder.svg'
 
 
 const GenreSuggestion = ({suggestion}) =>
