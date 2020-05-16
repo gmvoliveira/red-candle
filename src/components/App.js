@@ -36,7 +36,7 @@ const App = (props) => {
             </div>
             <main className="content">
                 <h2>Genres</h2>
-                    <GenreSuggestionList suggestions={genreSuggestions?.suggested_genres ?? []} />
+                    <GenreSuggestionList albumId={props.selectedAlbumId} suggestions={genreSuggestions?.suggested_genres ?? []} />
             </main>
           </div>
     )

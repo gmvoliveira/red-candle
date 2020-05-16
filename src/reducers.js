@@ -1,23 +1,22 @@
+import { createReducer } from './utils'
+
 const initialState = {
     albumFilter: '',
-    selectedAlbum: null
+    selectedAlbum: null,
+    selectedGenre: null
 }
-
-const createReducer = (initialState, handlers) => (
-    (state = initialState, action) => (
-        handlers.hasOwnProperty(action.type)
-            ? handlers[action.type](state, action)
-            : state
-    )
-)
 
 export default createReducer(initialState, {
     FILTER_ALBUMS: (state, action) => ({
         ...state,
-        albumFilter: action.filterText
+        albumFilter: action.payload.filterText
     }),
     SELECT_ALBUM: (state, action) => ({
         ...state,
-        selectedAlbum: action.album.id
+        selectedAlbum: action.payload.album.id
+    }),
+    SELECT_GENRE: (state, action) => ({
+        ...state,
+        selectedGenre: action.payload.genre
     })
 })

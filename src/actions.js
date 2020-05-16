@@ -1,7 +1,9 @@
 export function filterAlbums(text) {
     return {
         type: 'FILTER_ALBUMS',
-        filterText: text
+        payload: {
+	        filterText: text
+        }
     }
 }
 
@@ -9,6 +11,18 @@ export function filterAlbums(text) {
 export function selectAlbum(album) {
     return {
         type: 'SELECT_ALBUM',
-        album: album
+        payload: {
+	        album: album
+        }
     }
+}
+
+
+export function selectGenre(genre) {
+	return {
+		type: 'SELECT_GENRE',
+		payload: {
+			genre: genre
+		}
+	}
 }

@@ -4,7 +4,7 @@
         this.baseUrl = baseUrl
     }
 
-    async fetch(endpoint) {
+    async get(endpoint) {
         try {
             const response = await fetch(`${this.baseUrl}/${endpoint}`)
 
@@ -20,13 +20,18 @@
     }
 
     async getAlbums() {
-        const response = await this.fetch(`album`)
+        const response = await this.get(`album`)
         return response
     }
 
     async getSuggestedGenres(albumId) {
-        const response = await this.fetch(`album/${albumId}/genres`)
+        const response = await this.get(`album/${albumId}/genres`)
         return response.filter(suggestion => suggestion.album_id === albumId)[0]
+    }
+
+    async updateGenre(albumId, genre) {
+        // const response = await this.post(`album/${albumId}/genre/${genre}`)
+        console.log(`I update ${albumId} with ${genre}.`)
     }
 }
 
