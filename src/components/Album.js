@@ -1,5 +1,7 @@
 import React from 'react'
-import AlbumType from '../types/Album'
+import { connect } from 'react-redux'
+
+import { selectAlbum } from '../actions'
 
 const imageStyle = {
     maxWidth: '100%',
@@ -7,12 +9,8 @@ const imageStyle = {
     borderRadius: '6px'
 }
 
-type Props = {
-    album: AlbumType,
-}
-
-const Album: React.FC<Props> = ({album}) => (
-    <button className="nav-item" onClick={ () => console.log(album.id) }>
+const Album = ({album, onClickHandler}) => (
+    <button className="nav-item" onClick={ (e) => onClickHandler(e, album) }>
         <div className="nav-item-image">
             <img style={imageStyle} alt="Album Cover" src={`http://83.160.209.236:8080/album/${album.id}/art`} />
         </div>
@@ -23,4 +21,12 @@ const Album: React.FC<Props> = ({album}) => (
     </button>
 )
 
-export default Album
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onClickHandler: (e, album) => {
+            dispatch(selectAlbum(album))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Album)

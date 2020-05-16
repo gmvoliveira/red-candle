@@ -1,5 +1,6 @@
 const initialState = {
-    albumFilter: ''
+    albumFilter: '',
+    selectedAlbum: null
 }
 
 const createReducer = (initialState, handlers) => (
@@ -11,12 +12,12 @@ const createReducer = (initialState, handlers) => (
 )
 
 export default createReducer(initialState, {
-    FILTER_ALBUMS: (state, action) => {
-        let new_state = {
-            ...state,
-            albumFilter: action.filterText
-        }
-        console.log(new_state)
-        return new_state
-    }
+    FILTER_ALBUMS: (state, action) => ({
+        ...state,
+        albumFilter: action.filterText
+    }),
+    SELECT_ALBUM: (state, action) => ({
+        ...state,
+        selectedAlbum: action.album.id
+    })
 })

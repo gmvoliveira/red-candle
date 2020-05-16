@@ -7,14 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 
-
-
-type Props = {
-    keyDownHandler: (event: React.KeyboardEvent) => void
-}
-
-
-const AlbumFilter: React.FC<Props> = ({keyDownHandler}) => {
+const AlbumFilter = ({keyUpHandler}) => {
     return (
         <div>
             <div className="form-group">
@@ -26,16 +19,16 @@ const AlbumFilter: React.FC<Props> = ({keyDownHandler}) => {
                 <span className="input-group-search">
                   <FontAwesomeIcon icon={faSearch} />
                 </span>
-                <input id="album" name="album" list="albumlist" type="text" className="form-input form-search" onKeyUp={ keyDownHandler } />
+                <input id="album" name="album" list="albumlist" type="text" className="form-input form-search" onKeyUp={ keyUpHandler } />
             </div>
         </div>
     )
 }
 
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        keyDownHandler: (e: any) => {
+        keyUpHandler: (e) => {
             dispatch(filterAlbums(e.target.value))
         }
     }

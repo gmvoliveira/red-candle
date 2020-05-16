@@ -1,33 +1,13 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-:root {
-  --font-body: ubuntu, sans-serif;
-  --font-header: ubuntu, sans-serif;
-  --primary-color: #FF6A81;
-  --black: #232323;
-  --white: #ffffff;
-  --gray-20: #f4f4f4;
-  --gray-40: #e8e8e8;
-}
-
-body,
-#root {
+body {
   margin: 0;
-  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#root > div {
-  display: flex;
-  height: 100vh;
-  font-family: var(--font-body);
-  margin: 0;
-  padding: 0;
-  line-height: 1.3;
-}
-
-h1, h2, h3, h4, h5, h6,
-button, label {
-  font-weight: 700;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
