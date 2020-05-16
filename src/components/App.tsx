@@ -12,11 +12,12 @@ import { filterAlbums } from '../actions'
 type Props = { keyDownHandler: any }
 
 const App: React.FC<Props> = ({keyDownHandler}) => {
-    const [albums, setAlbums] = useState([])
+    const [albums, setAlbums] = useState(null)
 
-    useEffect(() => {  /* This is better. Now there's only two calls.
-    Yet, it should be one, right? So there's fixing to do still. */
-        Albums().then(data => albums.length > 0 ? null : setAlbums(data))
+    useEffect(() => {
+        if (albums === null) {
+            Albums().then(data => setAlbums(data))
+        }
     })
 
     return (
@@ -33,7 +34,7 @@ const App: React.FC<Props> = ({keyDownHandler}) => {
                         <input id="album" name="album" list="albumlist" type="text" className="form-input form-search" onKeyUp={ keyDownHandler } />
                 </div>
             </div>
-            <AlbumList albums={albums} />
+            <AlbumList albums={albums ?? []} />
         </div>
         <main className="content">
             <h2>Genres</h2>
