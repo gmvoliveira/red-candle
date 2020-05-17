@@ -4,13 +4,21 @@ import Album from './Album'
 
 
 const albumFilter = (album, query) => {
-    if (query.length < 2) return true
-
     const [field, term] = query.split('::')
 
-    if (!term) return true
+    if (term === undefined && field.length >= 2) {
+        return album.album
+            .toLowerCase()
+            .includes(field.toLowerCase())
+    }
 
-    return String(album[field]) === term
+    if (album.hasOwnProperty(field) && term.length >= 2) {
+        return String(album[field])
+            .toLowerCase()
+            .includes(term.toLowerCase())
+    }
+
+    return true
 }
 
 
