@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import redCandle from './reducers'
 import { observeStore } from './utils'
 import GirandoleClient from './GirandoleClient'
+import { updateAlbum } from './actions'
 
 const store = createStore(redCandle)
 
@@ -18,11 +19,12 @@ const girandoleClient = new GirandoleClient()
 
 observeStore(
     store,
-    state => state,
-    ({selectedAlbum, selectedGenre}) => {
-        // This is not entirely what I want. It now triggers also when selecting an album.
-        if (selectedAlbum != null && selectedGenre != null) { // Ugly workaround. See note above.
-            girandoleClient.updateGenre(selectedAlbum.id, selectedGenre)
+    state => state.selectedGenre,
+    async function (selectedGenre) {
+        const state = store.getState()
+        if (state.selectedAlbum != null && selectedGenre != null) {
+            const updatedAlbum = (await girandoleClient.updateGenre(state.selectedAlbum.id, selectedGenre))[0]
+            store.dispatch(updateAlbum(state.selectedAlbum.id, updatedAlbum))
         }
     }
 )

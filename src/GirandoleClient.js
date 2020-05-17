@@ -19,6 +19,27 @@
         }
     }
 
+    async post(endpoint, data) {
+        try {
+            const response = await fetch(`${this.baseUrl}/${endpoint}`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+              })
+
+            if (response.ok) {
+                const list = await response.json()
+                return list.results
+            }
+
+            throw new Error(`Failed request /${endpoint}.`)
+        } catch(error) {
+            console.error(error)
+        }
+    }
+
     async getAlbums() {
         const response = await this.get(`album`)
         return response
@@ -30,8 +51,8 @@
     }
 
     async updateGenre(albumId, genre) {
-        // const response = await this.post(`album/${albumId}/genre/${genre}`)
-        console.log(`I update ${albumId} with ${genre}.`)
+        const response = await this.post(`album/${albumId}/genres`, [genre])
+        return response
     }
 }
 

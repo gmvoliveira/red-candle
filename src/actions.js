@@ -8,6 +8,16 @@ export function filterAlbums(text) {
 }
 
 
+export function loadAlbums(albums) {
+    return {
+        type: 'LOAD_ALBUMS',
+        payload: {
+            albums: albums
+        }
+    }
+}
+
+
 export function selectAlbum(album) {
     return {
         type: 'SELECT_ALBUM',
@@ -25,4 +35,15 @@ export function selectGenre(genre) {
 			genre: genre
 		}
 	}
+}
+
+
+export function updateAlbum(albumId, album) {
+    return {
+        type: 'UPDATE_ALBUM',
+        payload: {
+            albumId: albumId,
+            album: album
+        }
+    }
 }

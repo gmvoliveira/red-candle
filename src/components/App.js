@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import AlbumList from './AlbumList'
 import GirandoleClient from '../GirandoleClient'
 import AlbumFilter from './AlbumFilter'
-import GenreSuggestions from './GenreSuggestions'
+import Genres from './Genres'
+import { loadAlbums } from '../actions'
 
 import '../App.css'
 
@@ -13,12 +14,11 @@ const girandoleClient = new GirandoleClient()
 
 
 const App = (props) => {
-    const [albums, setAlbums] = useState(null)
     const [genreSuggestions, setGenreSuggestions] = useState(null)
 
-    /* Consider using the `Context API`. */
     useEffect(() => {
-        girandoleClient.getAlbums().then(data => setAlbums(data))
+        girandoleClient.getAlbums()
+            .then(data => props.loadAlbums(data))
     }, [])
 
     useEffect(() => {
@@ -32,19 +32,24 @@ const App = (props) => {
         <div>
             <div className="header">
                 <AlbumFilter />
-                <AlbumList albums={albums ?? []} />
+                <AlbumList albums={props.albums ?? []} />
             </div>
             <main className="content">
                 <h2>Genres</h2>
-                    <GenreSuggestions album={props.selectedAlbum} suggestions={genreSuggestions?.suggested_genres ?? []} />
+                    <Genres album={props.selectedAlbum} suggestions={genreSuggestions?.suggested_genres ?? []} />
             </main>
           </div>
     )
 }
 
 const mapStateToProps = (state) => ({
+    albums: state.albums,
     selectedAlbum: state.selectedAlbum
 })
 
+const mapDispatchToProps = (dispatch) => ({
+    loadAlbums: (data) => { dispatch(loadAlbums(data)) }
+})
 
-export default connect(mapStateToProps, null)(App)
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

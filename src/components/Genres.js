@@ -5,7 +5,7 @@ import GenreSuggestion from './GenreSuggestion'
 import image from '../images/candlestick-holder.svg'
 
 
-const GenreSuggestions = ({suggestions, album}) => (
+const Genres = ({suggestions, album}) => (
     <div id="genrelist" className={suggestions ? "list" : "content-empty"}>
         { album != null
               ? (
@@ -13,10 +13,10 @@ const GenreSuggestions = ({suggestions, album}) => (
                         <h3>Current genre</h3>
                             <GenreItem genre={album.genre} />
                         <h3>Suggested genres</h3>
-                            {suggestions.map((suggestion, idx) => (
-                                <GenreSuggestion key={idx}
-                                                 suggestion={suggestion} />
-                            ))}
+                        {suggestions.map((suggestion, idx) => (
+                            <GenreSuggestion key={idx}
+                                             suggestion={suggestion} />
+                        ))}
                     </div>
               )
               : (
@@ -30,4 +30,4 @@ const GenreSuggestions = ({suggestions, album}) => (
 )
 
 
-export default GenreSuggestions
+export default Genres

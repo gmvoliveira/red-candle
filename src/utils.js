@@ -8,9 +8,6 @@ export const createReducer = (initialState, handlers) => (
 
 
 export function observeStore(store, select, onChange) {
-	/* TODO: Make sure you understand this completely.
-	Especially the part about next and current states. */
-
     let currentState
 
     function handleChange() {
@@ -25,3 +22,20 @@ export function observeStore(store, select, onChange) {
     handleChange()
     return unsubscribe
 }
+
+
+// export function observeSelectedAlbum(store, onChange) {
+//     let currentState
+
+//     function handleChange() {
+//       let nextState = select(store.getState())
+//       if (nextState !== currentState) {
+//         currentState = nextState
+//         onChange(currentState)
+//       }
+//     }
+
+//     let unsubscribe = store.subscribe(handleChange)
+//     handleChange()
+//     return unsubscribe
+// }
