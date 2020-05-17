@@ -6,28 +6,8 @@ import * as serviceWorker from './serviceWorker'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import redCandle from './reducers'
-import { observeStore } from './utils'
-import GirandoleClient from './GirandoleClient'
-import { updateAlbum } from './actions'
 
 const store = createStore(redCandle)
-
-
-/* This logic is nice I guess, but it shouldn't be placed here... */
-
-const girandoleClient = new GirandoleClient()
-
-observeStore(
-    store,
-    state => state.selectedGenre,
-    async function (selectedGenre) {
-        const state = store.getState()
-        if (state.selectedAlbum != null && selectedGenre != null) {
-            const updatedAlbum = (await girandoleClient.updateGenre(state.selectedAlbum.id, selectedGenre))[0]
-            store.dispatch(updateAlbum(state.selectedAlbum.id, updatedAlbum))
-        }
-    }
-)
 
 ReactDOM.render(
     <React.StrictMode>

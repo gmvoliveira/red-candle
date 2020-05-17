@@ -38,11 +38,10 @@ export function selectGenre(genre) {
 }
 
 
-export function updateAlbum(albumId, album) {
+export function updateAlbum(album) {
     return {
         type: 'UPDATE_ALBUM',
         payload: {
-            albumId: albumId,
             album: album
         }
     }
