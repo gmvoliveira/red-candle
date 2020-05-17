@@ -1,19 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
-
-import { selectGenre } from '../actions'
 
 
-const GenreItem = ({genre, onClickHandler}) => (
-    <button className="list-item" onClick={(e) => onClickHandler(e, genre)}>
-        {genre}
-    </button>
+const GenreItem = ({genre, clickable, onClickHandler}) => (
+	clickable ?
+		<button className="nav-item">{genre}</button>
+		: <div className="list-item">{genre}</div>
 )
 
-const mapDispatchToProps = (dispatch) => ({
-    onClickHandler: (e, genre) => {
-        dispatch(selectGenre(genre))
-    }
-})
-
-export default connect(null, mapDispatchToProps)(GenreItem)
+export default GenreItem

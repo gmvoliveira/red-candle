@@ -22,11 +22,11 @@ const App = (props) => {
     }, [])
 
     useEffect(() => {
-        if (props.selectedAlbumId !== null) {
-            girandoleClient.getSuggestedGenres(props.selectedAlbumId)
+        if (props.selectedAlbum !== null) {
+            girandoleClient.getSuggestedGenres(props.selectedAlbum.id)
                 .then(data => setGenreSuggestions(data))
         }
-    }, [props.selectedAlbumId])
+    }, [props.selectedAlbum])
 
     return (
         <div>
@@ -36,14 +36,14 @@ const App = (props) => {
             </div>
             <main className="content">
                 <h2>Genres</h2>
-                    <GenreSuggestions albumId={props.selectedAlbumId} suggestions={genreSuggestions?.suggested_genres ?? []} />
+                    <GenreSuggestions album={props.selectedAlbum} suggestions={genreSuggestions?.suggested_genres ?? []} />
             </main>
           </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    selectedAlbumId: state.selectedAlbum
+    selectedAlbum: state.selectedAlbum
 })
 
 

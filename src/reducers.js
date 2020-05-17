@@ -13,7 +13,7 @@ export default createReducer(initialState, {
     }),
     SELECT_ALBUM: (state, action) => ({
         ...state,
-        selectedAlbum: action.payload.album.id
+        selectedAlbum: action.payload.album
     }),
     SELECT_GENRE: (state, action) => ({
         ...state,

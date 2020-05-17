@@ -1,17 +1,23 @@
 import React from 'react'
 
 import GenreItem from './GenreItem'
+import GenreSuggestion from './GenreSuggestion'
 import image from '../images/candlestick-holder.svg'
 
 
-const GenreSuggestions = ({suggestions, albumId}) => (
+const GenreSuggestions = ({suggestions, album}) => (
     <div id="genrelist" className={suggestions ? "list" : "content-empty"}>
-        { albumId !== null
+        { album != null
               ? (
-                    suggestions.map((suggestion, idx) => (
-                        <GenreItem key={idx}
-                                   genre={suggestion} />
-                    ))
+                    <div>
+                        <h3>Current genre</h3>
+                            <GenreItem genre={album.genre} />
+                        <h3>Suggested genres</h3>
+                            {suggestions.map((suggestion, idx) => (
+                                <GenreSuggestion key={idx}
+                                                 suggestion={suggestion} />
+                            ))}
+                    </div>
               )
               : (
                     <div>
