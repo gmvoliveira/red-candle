@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import AlbumList from './AlbumList'
 import GirandoleClient from '../GirandoleClient'
 import AlbumFilter from './AlbumFilter'
-import GenreSuggestionList from './GenreList'
+import GenreSuggestions from './GenreSuggestions'
 
 import '../App.css'
 
@@ -36,7 +36,7 @@ const App = (props) => {
             </div>
             <main className="content">
                 <h2>Genres</h2>
-                    <GenreSuggestionList albumId={props.selectedAlbumId} suggestions={genreSuggestions?.suggested_genres ?? []} />
+                    <GenreSuggestions albumId={props.selectedAlbumId} suggestions={genreSuggestions?.suggested_genres ?? []} />
             </main>
           </div>
     )
