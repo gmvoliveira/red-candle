@@ -11,7 +11,7 @@ const girandoleClient = new GirandoleClient()
 
 
 const Genres_ = (props) => (
-    <div id="genrelist" className={props.suggestions ? "list" : "content-empty"}>
+    <div id="genrelist" className={props.album ? "list" : "content-empty"}>
         { props.album != null
               ? (
                     <div>
@@ -32,7 +32,7 @@ const Genres_ = (props) => (
               : (
                     <div>
                         <img alt="" src={image} style={{maxWidth: '100%'}} />
-                        <p style={{marginTop: '-3rem', textAlign: 'center', marginBottom: 0}}>Selecteer in de lijst aan de linkerkant een album om de meestgebruikte genres voor een album op te halen.</p>
+                        <p style={{marginTop: '-3rem', textAlign: 'center', marginBottom: 0}}>Select an album in the list on the left to retrieve its most popular genre suggestions.</p>
                     </div>
               )
           }
