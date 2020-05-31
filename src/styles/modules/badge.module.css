@@ -1,0 +1,14 @@
+.badge {
+    display: inline-block;
+    font-size: .9rem;
+    background-color: var(--gray-20);
+    border-radius: calc(var(--shape-border-radius) * 0.8);
+    padding: .4rem 1rem;
+    font-weight: 400;
+}
+
+.badgeSelected {
+    composes: badge;
+    margin-right: .5rem;
+    color: rgba(23,23,23,.3);
+}

@@ -1,0 +1,6 @@
+.nav {
+    flex-grow: 1;
+    margin: 0 -2rem;
+    overflow: auto;
+    padding: 1.5rem 2rem;
+}

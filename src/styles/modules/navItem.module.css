@@ -1,0 +1,51 @@
+.navItem {
+    composes: listItem from './listItem.module.css';
+    display: flex;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    border: 0;
+    font-size: 14px;
+    font-weight: 700;
+    transition-property: box-shadow, background-color;
+    transition-duration: .1s;
+    transition-timing-function: ease-in-out;
+}
+.navItem:active,
+.navItem:focus {
+    background-color: transparent;
+    box-shadow: 0 0 16px 0 rgba(0,0,0,0);
+    transition-duration: 0s;
+}
+.navItem:focus {
+    outline: none;
+}
+.navItemContent {
+    min-width: 0;
+}
+.navItemImage {
+    --image-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -0.5rem 0 -0.5rem -0.5rem;
+    width: var(--image-size);
+    min-width: var(--image-size);
+    height: var(--image-size);
+    flex-shrink: 0;
+    border-radius: 50%;
+    margin-right: 1rem;
+    background: #f7f7f7;
+}
+.navItemTitle {
+    margin: 0;
+    margin-bottom: 0.2rem;
+    flex-grow: 1;
+}
+.navItemSubtitle {
+    opacity: .5;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

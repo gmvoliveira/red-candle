@@ -1,0 +1,10 @@
+:root {
+    --font-body: ubuntu, sans-serif;
+    --font-header: ubuntu, sans-serif;
+    --primary-color: #FF6A81;
+    --black: #232323;
+    --white: #ffffff;
+    --gray-20: #f4f4f4;
+    --gray-40: #e8e8e8;
+    --shape-border-radius: 8px;
+  }

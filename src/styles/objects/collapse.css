@@ -1,0 +1,13 @@
+.collapse-toggle {
+    display: flex;
+}
+
+.collapse {
+    height: 0;
+    overflow: hidden;
+}
+
+.collapse.show {
+    height: auto;
+    overflow: visible;
+}

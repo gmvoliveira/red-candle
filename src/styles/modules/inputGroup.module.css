@@ -1,0 +1,19 @@
+.inputGroup {
+    position: relative;
+    display: flex;
+}
+
+.inputGroupCustomGenre {
+    composes: inputGroup;
+    margin-top: 2rem;
+}
+
+.inputGroupFloat {
+    position: absolute;
+    color: var(--primary-color);
+    left: 1rem;
+    font-size: 1.3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}

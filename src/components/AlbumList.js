@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Album from './Album'
+import AlbumListItem from './AlbumListItem'
 
+import '../styles/objects/nav.css'
 
 const albumFilter = (album, query) => {
     const [field, term] = query.split('::')
@@ -27,7 +28,7 @@ const AlbumList = ({albums, filterText}) => (
         {albums
             .filter((album) => albumFilter(album, filterText))
             .map((album) =>
-                <Album key={album.id} album={album} />
+                <AlbumListItem key={album.id} album={album} />
         )}
     </nav>
 )

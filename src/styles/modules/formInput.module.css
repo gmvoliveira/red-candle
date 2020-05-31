@@ -1,0 +1,25 @@
+.focus:focus {
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 0 3px var(--gray-40);
+}
+
+.formInput {
+    composes: focus;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: var(--font-body);
+    background-color: var(--gray-20);
+    padding: 1rem 1.3rem;
+    width: 100%;
+    border: 0;
+    box-shadow: 0 0 0 2px transparent;
+    transition: box-shadow .2s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.formSearch {
+    composes: formInput;
+    padding-left: 3rem;
+}

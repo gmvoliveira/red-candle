@@ -1,11 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import redCandle from './reducers'
+
+import './styles/global/variables.css'
+import './styles/global/base.css'
+import './styles/global/typography.css'
 
 const store = createStore(redCandle)
 

@@ -1,0 +1,32 @@
+.hover:hover {
+    outline: 0;
+}
+.button {
+    composes: hover;
+    outline: 0;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+.button[disabled] {
+    pointer-events: none;
+}
+.button[disabled] svg {
+    opacity: .2;
+}
+
+.iconHover:hover {
+    color: var(--black);
+}
+
+.buttonIcon {
+    composes: button iconHover;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    transition: color .2s ease-in-out;
+    margin: -0.5rem 0 -0.5rem auto;
+}

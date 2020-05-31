@@ -5,21 +5,24 @@ import { filterAlbums } from '../actions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-
+import { formGroup } from '../styles/modules/formGroup.module.css'
+import { formSearch } from '../styles/modules/formInput.module.css'
+import { formLabelFloat } from '../styles/modules/formLabel.module.css'
+import { inputGroup, inputGroupFloat } from '../styles/modules/inputGroup.module.css'
 
 const AlbumFilter = ({keyUpHandler}) => {
     return (
-        <div>
-            <div className="form-group">
-                <label htmlFor="album" className="form-label form-label-search">
-                    <span>Filter album</span>
-                </label>
-            </div>
-            <div className="input-group">
-                <span className="input-group-search">
-                  <FontAwesomeIcon icon={faSearch} />
+        <div className={formGroup}>
+            <label htmlFor="filterAlbums" className={formLabelFloat}>
+                <span>Filter album</span>
+            </label>
+            <div className={inputGroup}>
+                <span className={inputGroupFloat}>
+                    <FontAwesomeIcon icon={faSearch} />
                 </span>
-                <input id="album" name="album" list="albumlist" type="text" className="form-input form-search" onKeyUp={ keyUpHandler } />
+                <input id="filterAlbums" name="filterAlbums" type="text"
+                    className={formSearch}
+                    onKeyUp={ keyUpHandler } />
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
  class GirandoleClient {
 
-    constructor(baseUrl = 'http://83.160.209.236:8080') {
+    constructor(baseUrl = 'http://192.168.1.80:8080') {
         this.baseUrl = baseUrl
     }
 

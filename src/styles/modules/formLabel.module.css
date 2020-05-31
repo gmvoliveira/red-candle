@@ -1,0 +1,9 @@
+
+.formLabel {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.formLabelFloat {
+    composes: formLabel;
+}

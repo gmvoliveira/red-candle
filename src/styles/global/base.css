@@ -1,0 +1,11 @@
+@import-normalize;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body,
+#root {
+  margin: 0;
+  height: 100vh;
+}
