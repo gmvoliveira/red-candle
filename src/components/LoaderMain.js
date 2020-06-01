@@ -5,7 +5,7 @@ import { loader, ring } from '../styles/modules/loader.module.css'
 const LoaderMain = () => {
     return (
         <div className={loader} title="Loading. Please wait">
-            <div class={ring}><div></div></div>
+            <div className={ring}><div></div></div>
             <img src={image} alt="Loading. Please wait" />
         </div>
     );

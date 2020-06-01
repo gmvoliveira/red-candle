@@ -5,4 +5,5 @@
     margin: 0 -2rem;
     overflow: auto;
     padding: 1.5rem 2rem;
+    border-top: 1px solid var(--gray-20);
 }
