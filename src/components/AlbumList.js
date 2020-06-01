@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import AlbumListItem from './AlbumListItem'
 
+import image from '../images/album.svg'
+import MessageEmpty from './MessageEmpty'
 import '../styles/objects/nav.css'
 
 const albumFilter = (album, query) => {
@@ -23,15 +25,26 @@ const albumFilter = (album, query) => {
 }
 
 
-const AlbumList = ({albums, filterText}) => (
-    <nav className="nav">
-        {albums
-            .filter((album) => albumFilter(album, filterText))
-            .map((album) =>
-                <AlbumListItem key={album.id} album={album} />
-        )}
-    </nav>
-)
+const AlbumList = ({albums, filterText}) => {
+    const _albums = albums.filter((album) => albumFilter(album, filterText));
+
+    return (
+        <nav className="nav">
+            { _albums.length
+                ? _albums.map((album) =>
+                        <AlbumListItem key={album.id} album={album} />
+                    )
+                : (
+                    <MessageEmpty 
+                        url={image}
+                        text="Couldn't find any albums with those filter terms. Please try again with another term."
+                        altText="No albums found"
+                        size={200} />
+                )
+            }
+        </nav>
+    )
+}
 
 const mapStateToProps = (state) => {
     return {

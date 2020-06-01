@@ -10,6 +10,7 @@ import { GenreItem }  from './GenreItem'
 import { loadAlbums } from '../actions'
 
 import image from '../images/candlestick-holder.svg'
+import MessageEmpty from './MessageEmpty'
 import '../styles/objects/app.css'
 import '../styles/objects/header.css'
 import '../styles/objects/content.css'
@@ -24,7 +25,7 @@ const App = (props) => {
     useEffect(() => {
         girandoleClient.getAlbums()
             .then(data => props.loadAlbums(data))
-    }, [])
+    }, [props])
 
     useEffect(() => {
         if (props.selectedAlbum !== null) {
@@ -42,10 +43,10 @@ const App = (props) => {
             { !props.selectedAlbum
                 ? (
                     <main className="content">
-                        <div className="content-empty">
-                            <img alt="" src={image} style={{maxWidth: '100%'}} />
-                            <p style={{marginTop: '-3rem', textAlign: 'center', marginBottom: 0}}>Select an album in the list on the left to retrieve its most popular genre suggestions.</p>
-                        </div>
+                        <MessageEmpty 
+                            url={image}
+                            text="Select an album in the list on the left to retrieve its most popular genre suggestions."
+                            altText="No album selected" />
                     </main>
                 )
                 : (

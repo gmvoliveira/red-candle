@@ -6,13 +6,6 @@
     padding: 3rem;
     min-width: 500px;
 }
-
-.content-empty {
-    max-width: 300px;
-    margin: auto;
-    padding-bottom: 15vh;
-}
-
 .content-header {
     display: flex;
     background-color: var(--white);
