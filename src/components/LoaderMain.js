@@ -2,7 +2,7 @@ import React from 'react'
 import image from '../images/flame.svg'
 import { loader, ring } from '../styles/modules/loader.module.css'
 
-const Loader = () => {
+const LoaderMain = () => {
     return (
         <div className={loader} title="Loading. Please wait">
             <div class={ring}><div></div></div>
@@ -11,4 +11,4 @@ const Loader = () => {
     );
 };
   
-  export default Loader;
+  export default LoaderMain;
