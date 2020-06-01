@@ -41,7 +41,7 @@
     }
 
     async getAlbums() {
-        const response = await this.get(`album`)
+        const response = await this.get(`album/`)
         return response
     }
 
