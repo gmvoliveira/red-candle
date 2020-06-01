@@ -3,9 +3,12 @@ import React from 'react'
 import { messageEmpty } from '../styles/modules/message.module.css'
 
 const MessageEmpty = ({url, text, altText, size = 300}) => {
-    
-    const calcedImageSize = 200 + ((size - 200) > 0 ? size - 200 : 0)
-    const calcedFontSize = 1 + (((size - 200) > 0 ? size - 200 : 1) / 600)
+    const minImageSize = 200
+    const minFontSize = 1
+    const validSize = (size - minImageSize) > 0
+
+    const calcedImageSize = minImageSize + (validSize ? size - minImageSize : 0)
+    const calcedFontSize = minFontSize + ((validSize ? size - minImageSize : 1) / (size * 2))
 
     return (
         <div className={messageEmpty} style={{maxWidth: calcedImageSize}}>
