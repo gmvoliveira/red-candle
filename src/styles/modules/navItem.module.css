@@ -10,15 +10,31 @@
     transition-property: box-shadow, background-color;
     transition-duration: .1s;
     transition-timing-function: ease-in-out;
+    position: relative;
 }
-.navItem:active,
+.navItem::after {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    height: 100%;
+    width: 7px;
+    background-color: var(--primary-color);
+    border-radius: 0 var(--shape-border-radius) var(--shape-border-radius) 0;
+    transform: translateX(-100%);
+    transition: transform .3s ease-in-out;
+}
 .navItem:focus {
+    outline: none;
+}
+:global .nav button.active,
+:global .nav button:focus,
+:global .nav button:active {
     background-color: transparent;
     box-shadow: 0 0 16px 0 rgba(0,0,0,0);
     transition-duration: 0s;
 }
-.navItem:focus {
-    outline: none;
+:global .nav .active::after {
+    transform: translateX(0);
 }
 .navItemContent {
     min-width: 0;

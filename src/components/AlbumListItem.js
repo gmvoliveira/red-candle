@@ -6,17 +6,25 @@ import AlbumCover from './AlbumCover'
 
 import { navItem, navItemImage, navItemContent, navItemTitle, navItemSubtitle } from '../styles/modules/navItem.module.css'
 
-const AlbumListItem = ({album, onClickHandler}) => (
-    <button className={navItem} onClick={ (e) => onClickHandler(e, album) }>
-        <div className={navItemImage}>
-            {AlbumCover(album.id)}
-        </div>
-        <div className={navItemContent}>
-            <span className={navItemTitle}>{album.albumartist}</span>
-            <span className={navItemSubtitle}>{album.album} - {album.year}</span>
-        </div>
-    </button>
-)
+const AlbumListItem = (props) => {
+    const active = props.selectedAlbum === props.album.album
+
+    return (
+        <button className={`${navItem} ${active ? 'active': ''}`} onClick={ (e) => props.onClickHandler(e, props.album) }>
+            <div className={navItemImage}>
+                {AlbumCover(props.album.id)}
+            </div>
+            <div className={navItemContent}>
+                <span className={navItemTitle}>{props.album.albumartist}</span>
+                <span className={navItemSubtitle}>{props.album.album} - {props.album.year}</span>
+            </div>
+        </button>
+    )
+}
+
+const mapStateToProps = (state) => ({
+    selectedAlbum: state.selectedAlbum?.album
+})
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -26,4 +34,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(AlbumListItem)
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumListItem)
