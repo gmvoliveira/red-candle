@@ -19,15 +19,15 @@ const GenreItem = ({genre}) => (
     <div className={badge}>{genre}</div>
 )
 
-const GenreItemButton_ = ({genre, onClickHandler}) => {
+const GenreItemButton_ = ({genre, onClickHandler, selectedGenre}) => {
     // TODO: Should be the genre that is the current genre of selected album
-    let selectedGenre = 'Ambient' === genre;
+    let isSelected = selectedGenre === genre;
 
     return (
         <div className={listItem}>
             <span>{genre}</span>
-            <button className={buttonIcon} type="button" disabled={selectedGenre} onClick={ (e) => onClickHandler(e, genre) }>
-                {selectedGenre && <div className={badgeSelected}>Selected</div>}
+            <button className={buttonIcon} type="button" disabled={isSelected} onClick={ (e) => onClickHandler(e, genre) }>
+                {isSelected && <div className={badgeSelected}>Selected</div>}
                 <FontAwesomeIcon icon={faArrowRight} />
             </button>
         </div>

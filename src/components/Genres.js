@@ -18,11 +18,11 @@ const girandoleClient = new GirandoleClient()
 
 const Genres_ = (props) => {
     const [collapseActive, setcollapseActive] = useState(false);
-
+    
     return (
         <div id="genrelist">
             {props.suggestions.map((suggestion, idx) => (
-                <GenreItemButton key={idx} genre={suggestion} />
+                <GenreItemButton key={idx} genre={suggestion} selectedGenre={props.selectedGenre || props.album.genre} />
             ))}
             
             <div className={collapseActive ? listItemActive : listItemInactive}>
