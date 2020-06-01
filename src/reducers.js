@@ -3,6 +3,8 @@ import { createReducer } from './utils'
 const initialState = {
     albumFilter: '',
     albums: null,
+    fetchingAlbums: true,
+    fetchingGenres: false,
     selectedAlbum: null,
     selectedGenre: null
 }
@@ -10,6 +12,7 @@ const initialState = {
 export default createReducer(initialState, {
     LOAD_ALBUMS: (state, action) => ({
         ...state,
+        fetchingAlbums: false,
         albums: action.payload.albums
     }),
     UPDATE_ALBUM: (state, action) => ({
@@ -27,6 +30,7 @@ export default createReducer(initialState, {
     }),
     SELECT_GENRE: (state, action) => ({
         ...state,
+        fetchingGenres: false,
         selectedGenre: action.payload.genre
     })
 })

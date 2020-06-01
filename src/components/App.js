@@ -6,6 +6,7 @@ import GirandoleClient from '../GirandoleClient'
 import AlbumFilter from './AlbumFilter'
 import Genres from './Genres'
 import AlbumCover from './AlbumCover'
+import Loader from './Loader'
 import { GenreItem }  from './GenreItem'
 import { loadAlbums } from '../actions'
 
@@ -38,7 +39,10 @@ const App = (props) => {
         <div className="app">
             <div className="header">
                 <AlbumFilter />
-                <AlbumList albums={props.albums ?? []} />
+                { !props.fetchingAlbums
+                    ? (<AlbumList albums={props.albums ?? []} />)
+                    : (<Loader />)
+                }
             </div>
             { !props.selectedAlbum
                 ? (
@@ -76,6 +80,7 @@ const App = (props) => {
 
 const mapStateToProps = (state) => ({
     albums: state.albums,
+    fetchingAlbums: state.fetchingAlbums,
     selectedAlbum: state.selectedAlbum
 })
 
