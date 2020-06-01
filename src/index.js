@@ -8,6 +8,7 @@ import redCandle from './reducers'
 
 import './styles/global/variables.css'
 import './styles/global/base.css'
+import './styles/global/scrollbars.css'
 import './styles/global/typography.css'
 
 const store = createStore(redCandle)

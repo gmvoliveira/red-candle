@@ -1,0 +1,15 @@
+
+::-webkit-scrollbar {
+    width: 20px
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: var(--white);
+    background-color: transparent
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    border: 2px solid var(--white);
+    background-color: var(--gray-40);
+    border-radius: calc(var(--shape-border-radius) * .5);
+}
