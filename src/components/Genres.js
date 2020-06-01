@@ -6,7 +6,7 @@ import { updateAlbum } from '../actions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
-import { listItemAlt } from '../styles/modules/listItem.module.css'
+import { listItemActive, listItemInactive } from '../styles/modules/listItem.module.css'
 import { inputGroupCustomGenre } from '../styles/modules/inputGroup.module.css'
 import { buttonIcon } from '../styles/modules/button.module.css'
 import '../styles/objects/collapse.css'
@@ -25,7 +25,7 @@ const Genres_ = (props) => {
                 <GenreItemButton key={idx} genre={suggestion} />
             ))}
             
-            <div className={listItemAlt}>
+            <div className={collapseActive ? listItemActive : listItemInactive}>
                 <div className="collapse-toggle">
                     <span>Custom</span>
                     <button className={buttonIcon} type="button" onClick={() => setcollapseActive(!collapseActive)}>

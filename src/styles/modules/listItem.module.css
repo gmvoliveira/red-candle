@@ -9,10 +9,16 @@
     font-weight: 500;
 }
 
+.listItemAlt > * {
+    opacity: .3;
+    transition: opacity .3s ease-in-out;
+}
+
 .listItemAltActive:hover,
 .listItemAltActive:focus,
 .listItemAlt:hover > *,
-.listItemAlt:focus > * {
+.listItemAlt:focus > *,
+.listItemActive > * {
     opacity: 1;
 }
 
@@ -20,11 +26,15 @@
     composes: listItem listItemAltActive;
     margin-top: 1rem;;
     flex-direction: column;
-    opacity: 0.5;
     transition: opacity .2s ease-in-out;
 }
 
-.listItemAlt > * {
-    opacity: .3;
-    transition: opacity .3s ease-in-out;
+.listItemInactive {
+    composes: listItemAlt;
+    opacity: 0.5;
+}
+
+.listItemActive {
+    composes: listItemAlt;
+    opacity: 1;
 }
