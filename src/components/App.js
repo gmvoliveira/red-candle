@@ -25,7 +25,7 @@ const App = (props) => {
     useEffect(() => {
         girandoleClient.getAlbums()
             .then(data => props.loadAlbums(data))
-    }, [props])
+    }, [])
 
     useEffect(() => {
         if (props.selectedAlbum !== null) {
