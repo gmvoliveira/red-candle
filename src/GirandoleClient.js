@@ -7,6 +7,7 @@
     async get(endpoint) {
         try {
             const response = await fetch(`${this.baseUrl}/${endpoint}`)
+            // const response = await fetch(`./albums.json`)
 
             if (response.ok) {
                 const list = await response.json()
@@ -42,6 +43,7 @@
 
     async getAlbums() {
         const response = await this.get(`album/`)
+        // const response = await this.get()
         return response
     }
 
