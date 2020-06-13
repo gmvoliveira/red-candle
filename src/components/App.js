@@ -8,7 +8,7 @@ import Genres from './Genres'
 import AlbumCover from './AlbumCover'
 import LoaderMain from './LoaderMain'
 import { GenreItem }  from './GenreItem'
-import { loadAlbums } from '../actions'
+import { loadAlbums, toggleFetchingGenres } from '../actions'
 
 import image from '../images/candlestick-holder.svg'
 import MessageEmpty from './MessageEmpty'
@@ -31,7 +31,10 @@ const App = (props) => {
     useEffect(() => {
         if (props.selectedAlbum !== null) {
             girandoleClient.getSuggestedGenres(props.selectedAlbum.id)
-                .then(data => setGenreSuggestions(data))
+                .then(data => {
+                    setGenreSuggestions(data)
+                    props.toggleFetchingGenres(false)
+                })
         }
     }, [props.selectedAlbum])
 
@@ -67,10 +70,20 @@ const App = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="content-body">
-                            <h3 className="content-body-title">Modify genre</h3>
-                            <Genres album={props.selectedAlbum} suggestions={genreSuggestions?.suggested_genres ?? []} />
-                        </div>
+                        {props.fetchingGenres}
+                        {!props.fetchingGenres
+                            ? (
+                                <div className="content-body">
+                                    <h3 className="content-body-title">Modify genre</h3>
+                                    <Genres album={props.selectedAlbum} suggestions={genreSuggestions?.suggested_genres ?? []} />
+                                </div>
+                            )
+                            :(
+                                <div className="content-body">
+                                    <h3 className="content-body-title">Loading...</h3>
+                                </div>
+                            )
+                        }
                     </main>
                 )
             }
@@ -81,11 +94,13 @@ const App = (props) => {
 const mapStateToProps = (state) => ({
     albums: state.albums,
     fetchingAlbums: state.fetchingAlbums,
+    fetchingGenres: state.fetchingGenres,
     selectedAlbum: state.selectedAlbum
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    loadAlbums: (data) => { dispatch(loadAlbums(data)) }
+    loadAlbums: (data) => { dispatch(loadAlbums(data)) },
+    toggleFetchingGenres: (state) => { dispatch(toggleFetchingGenres(state)) }
 })
 
 

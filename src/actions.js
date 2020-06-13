@@ -46,3 +46,12 @@ export function updateAlbum(album) {
         }
     }
 }
+
+export function toggleFetchingGenres(state) {
+    return {
+        type: 'FETCH_GENRE',
+        payload: {
+            fetchingGenres: state
+        }
+    }
+}

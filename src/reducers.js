@@ -26,11 +26,15 @@ export default createReducer(initialState, {
     }),
     SELECT_ALBUM: (state, action) => ({
         ...state,
+        fetchingGenres: true,
         selectedAlbum: action.payload.album
     }),
     SELECT_GENRE: (state, action) => ({
         ...state,
-        fetchingGenres: false,
         selectedGenre: action.payload.genre
+    }),
+    FETCH_GENRE: (state, action) => ({
+        ...state,
+        fetchingGenres: action.payload.fetchingGenres
     })
 })
