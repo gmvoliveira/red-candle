@@ -30,11 +30,18 @@ const App = (props) => {
 
     useEffect(() => {
         if (props.selectedAlbum !== null) {
+            let isMounted = true
+            
             girandoleClient.getSuggestedGenres(props.selectedAlbum.id)
                 .then(data => {
-                    setGenreSuggestions(data)
-                    props.toggleFetchingGenres(false)
+                    if (isMounted) {
+                        setGenreSuggestions(data)
+                        props.toggleFetchingGenres(false)
+                    }
                 })
+            
+            // Cleanup when unmounted
+            return () => isMounted = false
         }
     }, [props.selectedAlbum])
 
