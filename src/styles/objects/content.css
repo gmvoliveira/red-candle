@@ -5,6 +5,7 @@
     background-color: var(--gray-20);
     padding: 3rem;
     min-width: 500px;
+    overflow: auto;
 }
 .content-header {
     display: flex;
