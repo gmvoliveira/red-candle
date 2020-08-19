@@ -25,14 +25,14 @@ const albumFilter = (album, query) => {
 }
 
 
-const AlbumList = ({albums, filterText}) => {
-    const _albums = albums.filter((album) => albumFilter(album, filterText));
+const AlbumList = ({ albums, filterText, selectedAlbum }) => {
+    const _albums = albums.filter((album) => albumFilter(album, filterText))
 
     return (
         <nav className="nav">
             { _albums.length
-                ? _albums.map((album) =>
-                        <AlbumListItem key={album.id} album={album} />
+                ? _albums.map((album, i) =>
+                        <AlbumListItem key={album.id + i} album={album} selectedAlbum={selectedAlbum} />
                     )
                 : (
                     <MessageEmpty 
@@ -46,10 +46,9 @@ const AlbumList = ({albums, filterText}) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        filterText: state.albumFilter
-    }
-}
+const mapStateToProps = (state) => ({
+    filterText: state.albumFilter,
+    selectedAlbum: state.selectedAlbum?.album
+})
 
 export default connect(mapStateToProps)(AlbumList)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
 import { selectAlbum } from '../actions'
@@ -9,8 +9,12 @@ import { navItem, navItemImage, navItemContent, navItemTitle, navItemSubtitle } 
 const AlbumListItem = (props) => {
     const active = props.selectedAlbum === props.album.album
 
+    const handleClick = (e) => {
+        props.onClickHandler(e, props.album)
+    }
+
     return (
-        <button className={`${navItem} ${active ? 'active': ''}`} onClick={ (e) => props.onClickHandler(e, props.album) }>
+        <button className={`${navItem} ${active ? 'active': ''}`} onClick={ (e) => handleClick(e) }>
             <div className={navItemImage}>
                 {AlbumCover(props.album.id)}
             </div>
@@ -22,10 +26,6 @@ const AlbumListItem = (props) => {
     )
 }
 
-const mapStateToProps = (state) => ({
-    selectedAlbum: state.selectedAlbum?.album
-})
-
 const mapDispatchToProps = (dispatch) => {
     return {
         onClickHandler: (e, album) => {
@@ -34,4 +34,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AlbumListItem)
+export default connect(null, mapDispatchToProps)(AlbumListItem)
