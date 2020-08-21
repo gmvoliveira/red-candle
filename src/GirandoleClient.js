@@ -54,7 +54,7 @@
 
     async updateGenre(albumId, genre) {
         const response = await this.post(`album/${albumId}/genres`, [genre])
-        return response
+        return response[0]
     }
 }
 

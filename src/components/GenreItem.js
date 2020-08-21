@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { selectGenre} from '../actions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { listItem } from '../styles/modules/listItem.module.css'
-import { buttonIcon } from '../styles/modules/button.module.css'
+
 import { badge, badgeSelected } from '../styles/modules/badge.module.css'
+import { buttonIcon } from '../styles/modules/button.module.css'
 import { formInput } from '../styles/modules/formInput.module.css'
+import { inputGroupCustomGenre } from '../styles/modules/inputGroup.module.css'
+import { listItem } from '../styles/modules/listItem.module.css'
 
 const mapDispatchToProps = (dispatch) => ({
     onClickHandler: (e, genre) => {
@@ -15,11 +17,11 @@ const mapDispatchToProps = (dispatch) => ({
     }
 })
 
-const GenreItem = ({genre}) => (
+const GenreItemBadge = ({genre}) => (
     <div className={badge}>{genre}</div>
 )
 
-const GenreItemButton_ = ({genre, onClickHandler, selectedGenre}) => {
+const GenreItem_ = ({genre, onClickHandler, selectedGenre}) => {
     // TODO: Should be the genre that is the current genre of selected album
     let isSelected = selectedGenre === genre;
 
@@ -33,13 +35,22 @@ const GenreItemButton_ = ({genre, onClickHandler, selectedGenre}) => {
         </div>
     )
 }
-const GenreItemButton = connect(null, mapDispatchToProps)(GenreItemButton_)
+const GenreItem = connect(null, mapDispatchToProps)(GenreItem_)
 
 
-const GenreItemInput_ = ({genre, onClickHandler}) => (
-    <input className={formInput} type="text" placeholder="Enter a custom genre" onChange={ (e) => onClickHandler(e, e.target.value) } />
-)
-const GenreItemInput = connect(null, mapDispatchToProps)(GenreItemInput_)
+const GenreItemCustom_ = ({genre, onClickHandler}) => {
+    const [customGenre, setCustomGenre] = useState('');
+
+    return (
+        <div className={inputGroupCustomGenre}>
+            <input className={formInput} type="text" placeholder="Enter a custom genre" value={customGenre} onChange={(e) => setCustomGenre(e.target.value) } />
+            <button className={buttonIcon} type="button" onClick={ (e) => onClickHandler(e, customGenre) }>
+                <FontAwesomeIcon icon={faArrowRight} />
+            </button>
+        </div>
+    )
+}
+const GenreItemCustom = connect(null, mapDispatchToProps)(GenreItemCustom_)
 
 
-export { GenreItem, GenreItemInput, GenreItemButton }
+export { GenreItemBadge, GenreItem, GenreItemCustom }

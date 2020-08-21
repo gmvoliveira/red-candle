@@ -7,8 +7,8 @@ import AlbumFilter from './AlbumFilter'
 import Genres from './Genres'
 import AlbumCover from './AlbumCover'
 import LoaderMain from './LoaderMain'
-import { GenreItem }  from './GenreItem'
-import { loadAlbums, toggleFetchingGenres } from '../actions'
+import { GenreItemBadge }  from './GenreItem'
+import { loadAlbums, toggleFetchingGenres, updateAlbum } from '../actions'
 
 import image from '../images/candlestick-holder.svg'
 import MessageEmpty from './MessageEmpty'
@@ -22,6 +22,14 @@ const girandoleClient = new GirandoleClient()
 
 const App = (props) => {
     const [genreSuggestions, setGenreSuggestions] = useState(null)
+
+    const NoAlbumSelected =
+        <main className="content">
+            <MessageEmpty 
+                url={image}
+                text="Select an album in the list on the left to retrieve its most popular genre suggestions."
+                altText="No album selected" />
+        </main>
 
     useEffect(() => {
         girandoleClient.getAlbums()
@@ -45,6 +53,22 @@ const App = (props) => {
         }
     }, [props.selectedAlbum])
 
+    useEffect(() => {
+        if (props.selectedGenre !== null && props.selectedAlbum !== null) {
+            let isMounted = true
+
+            girandoleClient.updateGenre(props.selectedAlbum.id, props.selectedGenre)
+                .then(updatedAlbum => {
+                    if (isMounted) {
+                        props.updateAlbum(updatedAlbum)
+                    }
+                })
+            
+            // Cleanup when unmounted
+            return () => isMounted = false
+        }
+    }, [props.selectedGenre])
+
     return (
         <div className="app">
             <div className="header">
@@ -54,15 +78,7 @@ const App = (props) => {
                     : (<LoaderMain />)
                 }
             </div>
-            { !props.selectedAlbum
-                ? (
-                    <main className="content">
-                        <MessageEmpty 
-                            url={image}
-                            text="Select an album in the list on the left to retrieve its most popular genre suggestions."
-                            altText="No album selected" />
-                    </main>
-                )
+            { !props.selectedAlbum ? (NoAlbumSelected)
                 : (
                     <main className="content">
                         <div className="content-header">
@@ -73,7 +89,7 @@ const App = (props) => {
                                 <h2 className="content-header-title">{props.selectedAlbum.albumartist}</h2>
                                 <h3 className="content-header-subtitle">{props.selectedAlbum.album} - {props.selectedAlbum.year}</h3>
                                 <div className="content-header-badges">
-                                    <GenreItem genre={props.selectedAlbum.genre} />
+                                    <GenreItemBadge genre={props.selectedAlbum.genre} />
                                 </div>
                             </div>
                         </div>
@@ -102,12 +118,14 @@ const mapStateToProps = (state) => ({
     albums: state.albums,
     fetchingAlbums: state.fetchingAlbums,
     fetchingGenres: state.fetchingGenres,
-    selectedAlbum: state.selectedAlbum
+    selectedAlbum: state.selectedAlbum,
+    selectedGenre: state.selectedGenre
 })
 
 const mapDispatchToProps = (dispatch) => ({
     loadAlbums: (data) => { dispatch(loadAlbums(data)) },
-    toggleFetchingGenres: (state) => { dispatch(toggleFetchingGenres(state)) }
+    toggleFetchingGenres: (state) => { dispatch(toggleFetchingGenres(state)) },
+    updateAlbum: (updatedAlbum) => { dispatch(updateAlbum(updatedAlbum)) }
 })
 
 
