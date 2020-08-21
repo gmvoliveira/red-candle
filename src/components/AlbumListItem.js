@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import { selectAlbum } from '../actions'
@@ -19,8 +19,8 @@ const AlbumListItem = (props) => {
                 {AlbumCover(props.album.id)}
             </div>
             <div className={navItemContent}>
-                <span className={navItemTitle}>{props.album.albumartist}</span>
-                <span className={navItemSubtitle}>{props.album.album} - {props.album.year}</span>
+                <span className={navItemTitle} title={props.album.albumartist}>{props.album.albumartist}</span>
+                <span className={navItemSubtitle} title={`${props.album.album} - ${props.album.year}`}>{props.album.album} - {props.album.year}</span>
             </div>
         </button>
     )

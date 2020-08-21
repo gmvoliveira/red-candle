@@ -24,22 +24,21 @@ const albumFilter = (album, query) => {
     return true
 }
 
-
 const AlbumList = ({ albums, filterText, selectedAlbum }) => {
-    const _albums = albums.filter((album) => albumFilter(album, filterText))
+    const filteredAlbums = albums.filter((album) => albumFilter(album, filterText))
+
+    const NoAlbumsMessage =
+        <MessageEmpty
+            url={image}
+            size={200}
+            altText="No albums found"
+            text="Couldn't find any albums with those filter terms. Please try again with another term." />
 
     return (
         <nav className="nav">
-            { _albums.length
-                ? _albums.map((album, i) =>
-                        <AlbumListItem key={album.id + i} album={album} selectedAlbum={selectedAlbum} />
-                    )
-                : (
-                    <MessageEmpty 
-                        url={image}
-                        text="Couldn't find any albums with those filter terms. Please try again with another term."
-                        altText="No albums found"
-                        size={200} />
+            { filteredAlbums.length === 0 ? (NoAlbumsMessage)
+                : filteredAlbums.map((album, i) =>
+                    <AlbumListItem key={album.id} album={album} selectedAlbum={selectedAlbum} />
                 )
             }
         </nav>
