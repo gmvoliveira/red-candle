@@ -8,7 +8,7 @@ import Genres from './Genres'
 import AlbumCover from './AlbumCover'
 import LoaderMain from './LoaderMain'
 import { GenreItemBadge }  from './GenreItem'
-import { loadAlbums, toggleFetchingGenres, updateAlbum } from '../actions'
+import { loadAlbums, toggleFetchingGenres, toggleSettingGenre, updateAlbum } from '../actions'
 
 import image from '../images/candlestick-holder.svg'
 import MessageEmpty from './MessageEmpty'
@@ -45,6 +45,7 @@ const App = (props) => {
                     if (isMounted) {
                         setGenreSuggestions(data)
                         props.toggleFetchingGenres(false)
+                        props.toggleSettingGenre(false)
                     }
                 })
             
@@ -89,7 +90,10 @@ const App = (props) => {
                                 <h2 className="content-header-title">{props.selectedAlbum.albumartist}</h2>
                                 <h3 className="content-header-subtitle">{props.selectedAlbum.album} - {props.selectedAlbum.year}</h3>
                                 <div className="content-header-badges">
-                                    <GenreItemBadge genre={props.selectedAlbum.genre} />
+                                    {!props.settingGenre
+                                        ? (<GenreItemBadge genre={props.selectedAlbum.genre} />)
+                                        : (<GenreItemBadge genre="Updating..." />)
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -98,7 +102,7 @@ const App = (props) => {
                             ? (
                                 <div className="content-body">
                                     <h3 className="content-body-title">Modify genre</h3>
-                                    <Genres album={props.selectedAlbum} suggestions={genreSuggestions?.suggested_genres ?? []} />
+                                    <Genres album={props.selectedAlbum} settingGenre={props.settingGenre} suggestions={genreSuggestions?.suggested_genres ?? []} />
                                 </div>
                             )
                             :(
@@ -118,6 +122,7 @@ const mapStateToProps = (state) => ({
     albums: state.albums,
     fetchingAlbums: state.fetchingAlbums,
     fetchingGenres: state.fetchingGenres,
+    settingGenre: state.settingGenre,
     selectedAlbum: state.selectedAlbum,
     selectedGenre: state.selectedGenre
 })
@@ -125,6 +130,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     loadAlbums: (data) => { dispatch(loadAlbums(data)) },
     toggleFetchingGenres: (state) => { dispatch(toggleFetchingGenres(state)) },
+    toggleSettingGenre: (state) => { dispatch(toggleSettingGenre(state)) },
     updateAlbum: (updatedAlbum) => { dispatch(updateAlbum(updatedAlbum)) }
 })
 

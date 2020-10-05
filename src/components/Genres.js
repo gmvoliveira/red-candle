@@ -15,7 +15,7 @@ const Genres_ = (props) => {
     return (
         <div id="genrelist">
             {props.suggestions.map((suggestion, idx) => (
-                <GenreItem key={idx} genre={suggestion} selectedGenre={props.selectedGenre || props.album.genre} />
+                <GenreItem key={idx} genre={suggestion} settingGenre={props.settingGenre} selectedGenre={props.selectedGenre || props.album.genre} />
             ))}
             
             <div className={collapseActive ? listItemActive : listItemInactive}>

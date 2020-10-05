@@ -5,6 +5,7 @@ const initialState = {
     albums: null,
     fetchingAlbums: true,
     fetchingGenres: false,
+    settingGenre: false,
     selectedAlbum: null,
     selectedGenre: null
 }
@@ -31,7 +32,12 @@ export default createReducer(initialState, {
     }),
     SELECT_GENRE: (state, action) => ({
         ...state,
+        settingGenre: true,
         selectedGenre: action.payload.genre
+    }),
+    SET_GENRE: (state, action) => ({
+        ...state,
+        settingGenre: action.payload.settingGenre,
     }),
     FETCH_GENRE: (state, action) => ({
         ...state,

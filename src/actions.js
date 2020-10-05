@@ -55,3 +55,12 @@ export function toggleFetchingGenres(state) {
         }
     }
 }
+
+export function toggleSettingGenre (state) {
+    return {
+        type: 'SET_GENRE',
+        payload: {
+            settingGenre: state
+        }
+    }
+}
