@@ -44,7 +44,18 @@
     async getAlbums() {
         const response = await this.get(`album/`)
         // const response = await this.get()
-        return response
+
+        function compareAddedDate(a, b) {
+            if ( a.added > b.added ){
+                return -1;
+              }
+              if ( a.added < b.added ){
+                return 1;
+              }
+              return 0;
+        }
+
+        return response.sort(compareAddedDate);
     }
 
     async getSuggestedGenres(albumId) {
