@@ -24,8 +24,25 @@ const albumFilter = (album, query) => {
     return true
 }
 
+const albumSort = (albums) => {
+    function compareAddedDate(a, b) {
+        if ( a.added > b.added ){
+            return -1;
+          }
+          if ( a.added < b.added ){
+            return 1;
+          }
+          return 0;
+    }
+
+    const sortedAlbums = albums.sort(compareAddedDate)
+
+    return sortedAlbums
+}
+
 const AlbumList = ({ albums, filterText, selectedAlbum }) => {
     const filteredAlbums = albums.filter((album) => albumFilter(album, filterText))
+    const sortedAlbums = albumSort(filteredAlbums)
 
     const NoAlbumsMessage =
         <MessageEmpty
@@ -36,8 +53,8 @@ const AlbumList = ({ albums, filterText, selectedAlbum }) => {
 
     return (
         <nav className="nav">
-            { filteredAlbums.length === 0 ? (NoAlbumsMessage)
-                : filteredAlbums.map((album, i) =>
+            { sortedAlbums.length === 0 ? (NoAlbumsMessage)
+                : sortedAlbums.map((album, i) =>
                     <AlbumListItem key={album.id} album={album} selectedAlbum={selectedAlbum} />
                 )
             }

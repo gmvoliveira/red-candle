@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const GenreItemBadge = ({genre}) => (
-    <div className={badge}>{genre}</div>
+    <div className={badge}>{genre || 'Set a genre below...'}</div>
 )
 
 const GenreItem_ = ({genre, onClickHandler, settingGenre, selectedGenre}) => {
