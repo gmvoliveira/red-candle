@@ -24,25 +24,25 @@ const albumFilter = (album, query) => {
     return true
 }
 
-const albumSort = (albums) => {
-    function compareAddedDate(a, b) {
-        if ( a.added > b.added ){
+const sortArray = (array, sortProperty) => {
+    function compareProperty(a, b) {
+        if ( a[sortProperty] > b[sortProperty] ){
             return -1;
           }
-          if ( a.added < b.added ){
+          if ( a[sortProperty] < b[sortProperty] ){
             return 1;
           }
           return 0;
     }
 
-    const sortedAlbums = albums.sort(compareAddedDate)
+    const sortedArray = array.sort(compareProperty)
 
-    return sortedAlbums
+    return sortedArray
 }
 
 const AlbumList = ({ albums, filterText, selectedAlbum }) => {
     const filteredAlbums = albums.filter((album) => albumFilter(album, filterText))
-    const sortedAlbums = albumSort(filteredAlbums)
+    const sortedAlbums = sortArray(filteredAlbums, 'added')
 
     const NoAlbumsMessage =
         <MessageEmpty
