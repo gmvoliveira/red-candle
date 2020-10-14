@@ -83,7 +83,7 @@ const App = (props) => {
                     <main className="content">
                         <div className="content-header">
                             <div className="content-header-image">
-                                {AlbumCover(props.selectedAlbum.id)}
+                                <AlbumCover album={props.selectedAlbum} />
                             </div>
                             <div className="content-header-body">
                                 <h2 className="content-header-title">{props.selectedAlbum.albumartist}</h2>

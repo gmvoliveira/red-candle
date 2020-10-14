@@ -6,15 +6,13 @@ const imageStyle = {
     borderRadius: 'calc(var(--shape-border-radius) - 2)'
 }
 
-const AlbumCover = albumId => {
-    try{
-        const src = require(`${process.env.REACT_APP_GIRANDOLE_BASE_URL}/album/${albumId}/art`)
 
-        return <img style={imageStyle} alt="Album Cover" src={src} />
-    }
-    catch(err){
-        //Do whatever you want when the image failed to load here
-    }
+const AlbumCover = ({album}) => {
+    return (album.artpath ?
+        <img style={imageStyle}
+             alt="Album Cover"
+             src={`${process.env.REACT_APP_GIRANDOLE_BASE_URL}/album/${album.id}/art`} />
+        : '')
 }
 
 export default AlbumCover

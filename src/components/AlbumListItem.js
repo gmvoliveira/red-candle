@@ -14,9 +14,9 @@ const AlbumListItem = (props) => {
     }
 
     return (
-        <button className={`${navItem} ${active ? 'active': ''}`} onClick={ (e) => handleClick(e) }>
+        <button className={`${navItem} ${active ? 'active': ''}`} onClick={handleClick} >
             <div className={navItemImage}>
-                {AlbumCover(props.album.id)}
+                <AlbumCover album={props.album} />
             </div>
             <div className={navItemContent}>
                 <span className={navItemTitle} title={props.album.albumartist}>{props.album.albumartist}</span>
