@@ -3,7 +3,7 @@ Desktop client which provides a GUI for getting genre recommendations via [genre
 
 ## Installation and Setup
 1. Run `npm install` to install all dependencies for running the project.
-2. Copy the file `.env`, rename to `.env`, and enter the host address of the server that is running [genre-buddy](https://github.com/bartkl/genre-buddy).
+2. Copy the file `process.env.example`, rename to `process.env`, and enter the host address of the server that is running [genre-buddy](https://github.com/bartkl/genre-buddy).
 4. Start [genre-buddy](https://github.com/bartkl/genre-buddy) on your host.
 3. Run `npm run start` to run Red Candle.
 
