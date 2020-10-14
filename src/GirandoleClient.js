@@ -1,6 +1,6 @@
  class GirandoleClient {
 
-    constructor(baseUrl = 'http://192.168.1.80:8080') {
+    constructor(baseUrl = process.env.REACT_APP_GIRANDOLE_BASE_URL) {
         this.baseUrl = baseUrl
     }
 

@@ -19,13 +19,12 @@ import '../styles/objects/content.css'
 
 const girandoleClient = new GirandoleClient()
 
-
 const App = (props) => {
     const [genreSuggestions, setGenreSuggestions] = useState(null)
 
     const NoAlbumSelected =
         <main className="content">
-            <MessageEmpty 
+            <MessageEmpty
                 url={image}
                 text="Select an album in the list on the left to retrieve its most popular genre suggestions."
                 altText="No album selected" />
@@ -39,7 +38,7 @@ const App = (props) => {
     useEffect(() => {
         if (props.selectedAlbum !== null) {
             let isMounted = true
-            
+
             girandoleClient.getSuggestedGenres(props.selectedAlbum.id)
                 .then(data => {
                     if (isMounted) {
@@ -48,7 +47,7 @@ const App = (props) => {
                         props.toggleSettingGenre(false)
                     }
                 })
-            
+
             // Cleanup when unmounted
             return () => isMounted = false
         }
@@ -64,7 +63,7 @@ const App = (props) => {
                         props.updateAlbum(updatedAlbum)
                     }
                 })
-            
+
             // Cleanup when unmounted
             return () => isMounted = false
         }

@@ -8,7 +8,7 @@ const imageStyle = {
 
 const AlbumCover = albumId => {
     try{
-        const src = require(`http://192.168.1.80:8080/album/${albumId}/art`)
+        const src = require(`${process.env.REACT_APP_GIRANDOLE_BASE_URL}/album/${albumId}/art`)
 
         return <img style={imageStyle} alt="Album Cover" src={src} />
     }
