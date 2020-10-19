@@ -7,7 +7,7 @@ import AlbumCover from './AlbumCover'
 import { navItem, navItemImage, navItemContent, navItemTitle, navItemSubtitle } from '../styles/modules/navItem.module.css'
 
 const AlbumListItem = (props) => {
-    const active = props.selectedAlbum === props.album.album
+    const active = props.selectedAlbum === props.album.id
 
     const handleClick = (e) => {
         props.onClickHandler(e, props.album)

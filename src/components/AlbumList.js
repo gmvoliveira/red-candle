@@ -64,7 +64,7 @@ const AlbumList = ({ albums, filterText, selectedAlbum }) => {
 
 const mapStateToProps = (state) => ({
     filterText: state.albumFilter,
-    selectedAlbum: state.selectedAlbum?.album
+    selectedAlbum: state.selectedAlbum?.id
 })
 
 export default connect(mapStateToProps)(AlbumList)
