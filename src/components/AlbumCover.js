@@ -3,7 +3,7 @@ import React from 'react'
 const imageStyle = {
     maxWidth: '100%',
     maxHeight: '100%',
-    borderRadius: 'calc(var(--shape-border-radius) - 2)'
+    borderRadius: 'calc(var(--shape-border-radius) - 2px)'
 }
 
 
