@@ -8,19 +8,22 @@ import { navItem, navItemImage, navItemContent, navItemTitle, navItemSubtitle } 
 
 const AlbumListItem = (props) => {
     const active = props.selectedAlbum === props.album.id
+    const navClass = `${navItem} ${active ? 'active': ''}`
+    const title = `${props.album.album} (${props.album.year})`
+    const subTitle = props.album.albumartist
 
     const handleClick = (e) => {
         props.onClickHandler(e, props.album)
     }
 
     return (
-        <button className={`${navItem} ${active ? 'active': ''}`} onClick={handleClick} >
+        <button className={navClass} onClick={handleClick} >
             <div className={navItemImage}>
                 <AlbumCover album={props.album} />
             </div>
             <div className={navItemContent}>
-                <span className={navItemTitle} title={props.album.albumartist}>{props.album.albumartist}</span>
-                <span className={navItemSubtitle} title={`${props.album.album} - ${props.album.year}`}>{props.album.album} - {props.album.year}</span>
+                <span className={navItemTitle} title={title}>{title}</span>
+                <span className={navItemSubtitle} title={subTitle}>{subTitle}</span>
             </div>
         </button>
     )

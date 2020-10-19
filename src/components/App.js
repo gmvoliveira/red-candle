@@ -86,8 +86,8 @@ const App = (props) => {
                                 <AlbumCover album={props.selectedAlbum} />
                             </div>
                             <div className="content-header-body">
-                                <h2 className="content-header-title">{props.selectedAlbum.albumartist}</h2>
-                                <h3 className="content-header-subtitle">{props.selectedAlbum.album} - {props.selectedAlbum.year}</h3>
+                                <h2 className="content-header-title">{props.selectedAlbum.album} ({props.selectedAlbum.year})</h2>
+                                <h3 className="content-header-subtitle">{props.selectedAlbum.albumartist}</h3>
                                 <div className="content-header-badges">
                                     {!props.settingGenre
                                         ? (<GenreItemBadge genre={props.selectedAlbum.genre} />)
