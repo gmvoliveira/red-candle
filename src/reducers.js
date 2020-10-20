@@ -38,6 +38,7 @@ export default createReducer(initialState, {
     SET_GENRE: (state, action) => ({
         ...state,
         settingGenre: action.payload.settingGenre,
+        selectedGenre: null
     }),
     FETCH_GENRE: (state, action) => ({
         ...state,
