@@ -21,9 +21,9 @@ const GenreItemBadge = ({genre}) => (
     <div className={badge}>{genre || 'Set a genre below...'}</div>
 )
 
-const GenreItem_ = ({genre, onClickHandler, settingGenre, selectedGenre}) => {
+const GenreItem_ = ({genre, onClickHandler, settingGenre, currentGenre}) => {
     // TODO: Should be the genre that is the current genre of selected album
-    let isSelected = selectedGenre === genre;
+    let isSelected = currentGenre === genre;
 
     return (
         <div className={listItem}>
