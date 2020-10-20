@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import GirandoleClient from '../GirandoleClient'
 
 import AlbumList from './AlbumList'
-import GirandoleClient from '../GirandoleClient'
-import AlbumFilter from './AlbumFilter'
-import Genres from './Genres'
-import AlbumCover from './AlbumCover'
+import AppContent from './AppContent'
 import LoaderMain from './LoaderMain'
-import { GenreItemBadge }  from './GenreItem'
+import AlbumFilter from './AlbumFilter'
 import { loadAlbums, toggleFetchingGenres, toggleSettingGenre, updateAlbum } from '../actions'
 
 import image from '../images/candlestick-holder.svg'
@@ -21,6 +19,7 @@ const girandoleClient = new GirandoleClient()
 
 const App = (props) => {
     const [genreSuggestions, setGenreSuggestions] = useState(null)
+    let { selectedAlbum, selectedGenre, toggleFetchingGenres, toggleSettingGenre, updateAlbum, loadAlbums } = props
 
     const NoAlbumSelected =
         <main className="content">
@@ -32,42 +31,42 @@ const App = (props) => {
 
     useEffect(() => {
         girandoleClient.getAlbums()
-            .then(data => props.loadAlbums(data))
-    }, [])
-
+        .then(data => loadAlbums(data))
+    }, [loadAlbums])
+    
     useEffect(() => {
-        if (props.selectedAlbum !== null) {
+        if (selectedAlbum !== null) {
             let isMounted = true
 
-            girandoleClient.getSuggestedGenres(props.selectedAlbum.id)
+            girandoleClient.getSuggestedGenres(selectedAlbum.id)
                 .then(data => {
                     if (isMounted) {
                         setGenreSuggestions(data)
-                        props.toggleFetchingGenres(false)
-                        props.toggleSettingGenre(false)
+                        toggleFetchingGenres(false)
+                        toggleSettingGenre(false)
                     }
                 })
 
             // Cleanup when unmounted
             return () => isMounted = false
         }
-    }, [props.selectedAlbum])
+    }, [selectedAlbum, toggleFetchingGenres, toggleSettingGenre])
 
     useEffect(() => {
-        if (props.selectedGenre !== null && props.selectedAlbum !== null) {
+        if (selectedGenre !== null && selectedAlbum !== null) {
             let isMounted = true
 
-            girandoleClient.updateGenre(props.selectedAlbum.id, props.selectedGenre)
+            girandoleClient.updateGenre(selectedAlbum.id, selectedGenre)
                 .then(updatedAlbum => {
                     if (isMounted) {
-                        props.updateAlbum(updatedAlbum)
+                        updateAlbum(updatedAlbum)
                     }
                 })
 
             // Cleanup when unmounted
             return () => isMounted = false
         }
-    }, [props.selectedGenre])
+    }, [selectedGenre, selectedAlbum, updateAlbum])
 
     return (
         <div className="app">
@@ -79,39 +78,12 @@ const App = (props) => {
                 }
             </div>
             { !props.selectedAlbum ? (NoAlbumSelected)
-                : (
-                    <main className="content">
-                        <div className="content-header">
-                            <div className="content-header-image">
-                                <AlbumCover album={props.selectedAlbum} />
-                            </div>
-                            <div className="content-header-body">
-                                <h2 className="content-header-title">{props.selectedAlbum.album} ({props.selectedAlbum.year})</h2>
-                                <h3 className="content-header-subtitle">{props.selectedAlbum.albumartist}</h3>
-                                <div className="content-header-badges">
-                                    {!props.settingGenre
-                                        ? (<GenreItemBadge genre={props.selectedAlbum.genre} />)
-                                        : (<GenreItemBadge genre="Updating..." />)
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                        {props.fetchingGenres}
-                        {!props.fetchingGenres
-                            ? (
-                                <div className="content-body">
-                                    <h3 className="content-body-title">Modify genre</h3>
-                                    <Genres album={props.selectedAlbum} settingGenre={props.settingGenre} suggestions={genreSuggestions?.suggested_genres ?? []} />
-                                </div>
-                            )
-                            :(
-                                <div className="content-body">
-                                    <h3 className="content-body-title">Loading...</h3>
-                                </div>
-                            )
-                        }
-                    </main>
-                )
+                : (<AppContent
+                    selectedAlbum={props.selectedAlbum}
+                    settingGenre={props.settingGenre}
+                    fetchingGenres={props.fetchingGenres}
+                    genreSuggestions={genreSuggestions}
+                    />)
             }
           </div>
     )
