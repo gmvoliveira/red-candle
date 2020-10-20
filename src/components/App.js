@@ -19,7 +19,7 @@ const girandoleClient = new GirandoleClient()
 
 const App = (props) => {
     const [genreSuggestions, setGenreSuggestions] = useState(null)
-    let { selectedAlbum, selectedGenre, toggleFetchingGenres, toggleSettingGenre, updateAlbum, loadAlbums } = props
+    const { selectedAlbum, selectedGenre } = props
 
     const NoAlbumSelected =
         <main className="content">
@@ -31,8 +31,9 @@ const App = (props) => {
 
     useEffect(() => {
         girandoleClient.getAlbums()
-        .then(data => loadAlbums(data))
-    }, [loadAlbums])
+        .then(data => props.loadAlbums(data))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     
     useEffect(() => {
         if (selectedAlbum !== null) {
@@ -42,15 +43,16 @@ const App = (props) => {
                 .then(data => {
                     if (isMounted) {
                         setGenreSuggestions(data)
-                        toggleFetchingGenres(false)
-                        toggleSettingGenre(false)
+                        props.toggleFetchingGenres(false)
+                        props.toggleSettingGenre(false)
                     }
                 })
 
             // Cleanup when unmounted
             return () => isMounted = false
         }
-    }, [selectedAlbum, toggleFetchingGenres, toggleSettingGenre])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedAlbum])
 
     useEffect(() => {
         if (selectedGenre !== null && selectedAlbum !== null) {
@@ -59,14 +61,15 @@ const App = (props) => {
             girandoleClient.updateGenre(selectedAlbum.id, selectedGenre)
                 .then(updatedAlbum => {
                     if (isMounted) {
-                        updateAlbum(updatedAlbum)
+                        props.updateAlbum(updatedAlbum)
                     }
                 })
 
             // Cleanup when unmounted
             return () => isMounted = false
         }
-    }, [selectedGenre, selectedAlbum, updateAlbum])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedGenre])
 
     return (
         <div className="app">
