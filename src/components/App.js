@@ -11,7 +11,7 @@ import { loadAlbums, toggleFetchingGenres, toggleSettingGenre, updateAlbum } fro
 import image from '../images/candlestick-holder.svg'
 import MessageEmpty from './MessageEmpty'
 import '../styles/objects/app.css'
-import '../styles/objects/header.css'
+import '../styles/objects/sidebar.css'
 import '../styles/objects/content.css'
 
 
@@ -73,7 +73,7 @@ const App = (props) => {
 
     return (
         <div className="app">
-            <div className="header">
+            <div className="sidebar">
                 <AlbumFilter />
                 { !props.fetchingAlbums
                     ? (<AlbumList albums={props.albums ?? []} />)
