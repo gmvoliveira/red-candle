@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux'
 
-import { GenreItem, GenreItemCustom }  from './GenreItem'
+import { GenreListItem, GenreListItemCustom }  from './GenreListItem'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
@@ -9,15 +9,16 @@ import { listItemActive, listItemInactive } from '../styles/modules/listItem.mod
 import { buttonIcon } from '../styles/modules/button.module.css'
 import '../styles/objects/collapse.css'
 
-const Genres_ = (props) => {
+const Genres = (props) => {
     const [collapseActive, setcollapseActive] = useState(false);
     
     return (
         <div id="genrelist">
             {props.suggestions.map((suggestion, idx) => (
-                <GenreItem key={idx} genre={suggestion} settingGenre={props.settingGenre} currentGenre={props.selectedGenre || props.album.genre} />
+                <GenreListItem key={idx} genre={suggestion} settingGenre={props.settingGenre} currentGenre={props.selectedGenre || props.album.genre} />
             ))}
             
+            {/* Collapse control around custom genre */}
             <div className={collapseActive ? listItemActive : listItemInactive}>
                 <div className="collapse-toggle">
                     <span>Custom</span>
@@ -26,7 +27,7 @@ const Genres_ = (props) => {
                     </button>
                 </div>
                 <div className={`collapse ${collapseActive && 'show'}`}>
-                    <GenreItemCustom />
+                    <GenreListItemCustom />
                 </div>
             </div>
         </div>
@@ -37,6 +38,6 @@ const mapStateToProps = (state) => ({
     selectedGenre: state.selectedGenre
 })
 
-const Genres = connect(mapStateToProps, null)(Genres_)
+const GenreList = connect(mapStateToProps, null)(Genres)
 
-export default Genres
+export default GenreList

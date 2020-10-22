@@ -1,7 +1,7 @@
 import React from 'react'
-import Genres from './Genres'
+import GenreList from './GenreList'
 import AlbumCover from './AlbumCover'
-import { GenreItemBadge }  from './GenreItem'
+import GenreBadge  from './GenreBadge'
 
 const AppContent = (props) => {
     return (
@@ -14,7 +14,7 @@ const AppContent = (props) => {
                     <h2 className="content-header-title">{props.selectedAlbum.album} ({props.selectedAlbum.year})</h2>
                     <h3 className="content-header-subtitle">{props.selectedAlbum.albumartist}</h3>
                     <div className="content-header-badges">
-                        <GenreItemBadge genre={!props.settingGenre ? props.selectedAlbum.genre : 'Updating...'} />
+                        <GenreBadge genre={!props.settingGenre ? props.selectedAlbum.genre : 'Updating...'} />
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@ const AppContent = (props) => {
             <div className="content-body">
                 <h3 className="content-body-title">{!props.fetchingGenres ? 'Modify genre' : 'Loading...'}</h3>
                 {!props.fetchingGenres &&
-                    <Genres
+                    <GenreList
                         album={props.selectedAlbum}
                         settingGenre={props.settingGenre}
                         suggestions={props.genreSuggestions?.suggested_genres ?? []} />
