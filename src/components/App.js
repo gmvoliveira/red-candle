@@ -4,7 +4,7 @@ import GirandoleClient from '../GirandoleClient'
 
 import AlbumList from './AlbumList'
 import AppContent from './AppContent'
-import LoaderMain from './LoaderMain'
+import AlbumLoader from './AlbumLoader'
 import AlbumFilter from './AlbumFilter'
 import { loadAlbums, toggleFetchingGenres, toggleSettingGenre, updateAlbum } from '../actions'
 
@@ -77,7 +77,7 @@ const App = (props) => {
                 <AlbumFilter />
                 { !props.fetchingAlbums
                     ? (<AlbumList albums={props.albums ?? []} />)
-                    : (<LoaderMain />)
+                    : (<AlbumLoader />)
                 }
             </div>
             { !props.selectedAlbum ? (NoAlbumSelected)
