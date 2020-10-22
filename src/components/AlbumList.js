@@ -49,7 +49,7 @@ const AlbumList = ({ albums, filterText, selectedAlbum }) => {
             url={image}
             size={200}
             altText="No albums found"
-            text="Couldn't find any albums with those filter terms. Please try again with another term." />
+            text="Couldn't find any albums. Please try again!" />
 
     return (
         <nav className="nav">
