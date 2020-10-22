@@ -49,13 +49,31 @@
     }
 
     async getSuggestedGenres(albumId) {
-        const response = await this.get(`album/${albumId}/genres`)
-        return response.filter(suggestion => suggestion.album_id === albumId)[0]
+        try {
+            const response = await this.get(`album/${albumId}/genres`)
+
+            if (response.length) {
+                return response.filter(suggestion => suggestion.album_id === albumId)[0]
+            }
+
+            throw new Error(`Failed to get genres for album with id ${albumId}`)
+        } catch(error) {
+            console.error(error)
+        }
     }
 
     async updateGenre(albumId, genre) {
-        const response = await this.post(`album/${albumId}/genres`, [genre])
-        return response[0]
+        try {
+            const response = await this.post(`album/${albumId}/genres`, [genre])
+
+            if (response.length) {
+                return response[0]
+            }
+
+            throw new Error(`Failed to update genre with ${genre} for album with id ${albumId}`)
+        } catch(error) {
+            console.error(error)
+        }
     }
 }
 

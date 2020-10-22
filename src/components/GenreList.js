@@ -11,27 +11,33 @@ import '../styles/objects/collapse.css'
 
 const Genres = (props) => {
     const [collapseActive, setcollapseActive] = useState(false);
-    
-    return (
-        <div id="genrelist">
-            {props.suggestions.map((suggestion, idx) => (
-                <GenreListItem key={idx} genre={suggestion} settingGenre={props.settingGenre} currentGenre={props.selectedGenre || props.album.genre} />
-            ))}
-            
-            {/* Collapse control around custom genre */}
-            <div className={collapseActive ? listItemActive : listItemInactive}>
-                <div className="collapse-toggle">
-                    <span>Custom</span>
-                    <button className={buttonIcon} type="button" onClick={() => setcollapseActive(!collapseActive)}>
-                        <FontAwesomeIcon icon={collapseActive ? faMinus : faPlus} />
-                    </button>
-                </div>
-                <div className={`collapse ${collapseActive && 'show'}`}>
-                    <GenreListItemCustom />
+
+    if (!props.suggestions.length) {
+        return (
+            <div>Something went wrong. Please try again!</div>
+        )
+    } else {
+        return (
+            <div id="genrelist">
+                {props.suggestions.map((suggestion, idx) => (
+                    <GenreListItem key={idx} genre={suggestion} settingGenre={props.settingGenre} currentGenre={props.selectedGenre || props.album.genre} />
+                ))}
+                
+                {/* Collapse control around custom genre */}
+                <div className={collapseActive ? listItemActive : listItemInactive}>
+                    <div className="collapse-toggle">
+                        <span>Custom</span>
+                        <button className={buttonIcon} type="button" onClick={() => setcollapseActive(!collapseActive)}>
+                            <FontAwesomeIcon icon={collapseActive ? faMinus : faPlus} />
+                        </button>
+                    </div>
+                    <div className={`collapse ${collapseActive && 'show'}`}>
+                        <GenreListItemCustom />
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 const mapStateToProps = (state) => ({

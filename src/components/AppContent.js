@@ -20,7 +20,13 @@ const AppContent = (props) => {
             </div>
             
             <div className="content-body">
-                <h3 className="content-body-title">{!props.fetchingGenres ? 'Modify genre' : 'Loading...'}</h3>
+                <h3 className="content-body-title">
+                    {!props.fetchingGenres ?
+                        props.genreSuggestions?.suggested_genres.length ? 
+                            'Modify genre'
+                            : 'Oops! We couldn\'t find any genres'
+                        : 'Loading...'}
+                </h3>
                 {!props.fetchingGenres &&
                     <GenreList
                         album={props.selectedAlbum}
