@@ -55,7 +55,7 @@ const AlbumList = ({ albums, filterText, selectedAlbum }) => {
         <nav className="nav">
             { sortedAlbums.length === 0 ? (NoAlbumsMessage)
                 : sortedAlbums.map((album, i) =>
-                    <AlbumListItem key={album.id} album={album} selectedAlbum={selectedAlbum} />
+                    <AlbumListItem key={album.id} album={album} selectedAlbum={selectedAlbum === album.id} />
                 )
             }
         </nav>
