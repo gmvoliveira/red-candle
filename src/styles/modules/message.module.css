@@ -2,7 +2,7 @@
     position: relative;
 }
 
-.messageEmpty {
+.messageIllustration {
     composes: message;
     display: flex;
     flex-direction: column;
@@ -11,11 +11,11 @@
     padding-bottom: 15vh;
 }
 
-.messageEmpty img {
+.messageIllustration img {
     margin-left: 1rem;
 }
 
-.messageEmpty p {
+.messageIllustration p {
     margin-top: -2rem;
     text-align: center;
     margin-bottom: 0;

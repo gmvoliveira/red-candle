@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import AlbumListItem from './AlbumListItem'
 
 import image from '../images/album.svg'
-import MessageEmpty from './MessageEmpty'
+import MessageIllustration from './MessageIllustration'
 import '../styles/objects/nav.css'
 
 const albumFilter = (album, query) => {
@@ -45,7 +45,7 @@ const AlbumList = ({ albums, filterText, selectedAlbum }) => {
     const sortedAlbums = sortArray(filteredAlbums, 'added')
 
     const NoAlbumsMessage =
-        <MessageEmpty
+        <MessageIllustration
             url={image}
             size={200}
             altText="No albums found"

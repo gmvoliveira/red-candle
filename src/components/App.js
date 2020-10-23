@@ -8,26 +8,14 @@ import AlbumLoader from './AlbumLoader'
 import AlbumFilter from './AlbumFilter'
 import { loadAlbums, toggleFetchingGenres, toggleSettingGenre, updateAlbum } from '../actions'
 
-import image from '../images/candlestick-holder.svg'
-import MessageEmpty from './MessageEmpty'
 import '../styles/objects/app.css'
 import '../styles/objects/sidebar.css'
-import '../styles/objects/content.css'
-
 
 const girandoleClient = new GirandoleClient()
 
 const App = (props) => {
     const [genreSuggestions, setGenreSuggestions] = useState(null)
     const { selectedAlbum, selectedGenre } = props
-
-    const NoAlbumSelected =
-        <main className="content">
-            <MessageEmpty
-                url={image}
-                text="Select an album in the list on the left to retrieve its most popular genre suggestions."
-                altText="No album selected" />
-        </main>
 
     useEffect(() => {
         girandoleClient.getAlbums()
@@ -80,14 +68,12 @@ const App = (props) => {
                     : (<AlbumLoader />)
                 }
             </div>
-            { !props.selectedAlbum ? (NoAlbumSelected)
-                : (<AppContent
-                    selectedAlbum={props.selectedAlbum}
-                    settingGenre={props.settingGenre}
-                    fetchingGenres={props.fetchingGenres}
-                    genreSuggestions={genreSuggestions}
-                    />)
-            }
+            <AppContent
+                selectedAlbum={props.selectedAlbum}
+                settingGenre={props.settingGenre}
+                fetchingGenres={props.fetchingGenres}
+                genreSuggestions={genreSuggestions}
+                />
           </div>
     )
 }

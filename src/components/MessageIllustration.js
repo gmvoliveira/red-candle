@@ -1,8 +1,7 @@
 import React from 'react'
+import { messageIllustration } from '../styles/modules/message.module.css'
 
-import { messageEmpty } from '../styles/modules/message.module.css'
-
-const MessageEmpty = ({url, text, altText, size = 300}) => {
+const MessageIllustration = ({url, text, altText, size = 300}) => {
     const minImageSize = 200
     const minFontSize = 1
     const validSize = (size - minImageSize) > 0
@@ -11,11 +10,11 @@ const MessageEmpty = ({url, text, altText, size = 300}) => {
     const calcedFontSize = minFontSize + ((validSize ? size - minImageSize : 1) / (size * 2))
 
     return (
-        <div className={messageEmpty} style={{maxWidth: calcedImageSize}}>
-            <img src={url} alt="No albums found" />
+        <div className={messageIllustration} style={{maxWidth: calcedImageSize}}>
+            <img src={url} alt={altText} />
             <p style={{fontSize: `${calcedFontSize}rem`}}>{text}</p>
         </div>
     )
 }
 
-export default MessageEmpty
+export default MessageIllustration
