@@ -8,7 +8,7 @@ Desktop client which provides a GUI for getting genre recommendations via [Giran
 3. Run `npm run start` to run Red Candle.
 
 ## Using Red Candle to get and write genre recommendations
-- Select an album in the list on the left to get a list of genre recommendations.bg-0
+- Select an album in the list on the left to get a list of genre recommendations.
 - Select one of the recommendations, or enter and select a custom genre.
 - The files in your album have now been updated with new genres!
 
