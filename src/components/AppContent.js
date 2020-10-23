@@ -5,10 +5,10 @@ import GenreBadge  from './GenreBadge'
 
 import image from '../images/candlestick-holder.svg'
 import MessageIllustration from './MessageIllustration'
+import { buttonPrimary } from '../styles/modules/button.module.css'
 import '../styles/objects/content.css'
 
 const AppContent = (props) => {
-
     if (!props.selectedAlbum) {
         return (
             <main className="content">
@@ -19,6 +19,8 @@ const AppContent = (props) => {
             </main>
         )
     } else {
+        const rymUrl = `https://rateyourmusic.com/search?searchtype=l&searchterm=${props.selectedAlbum.albumartist.replace(' ', '+')}+${props.selectedAlbum.album.replace(' ', '+')}`
+
         return (
             <main className="content">
                 <div className="content-header">
@@ -30,17 +32,20 @@ const AppContent = (props) => {
                         <h3 className="content-header-subtitle">{props.selectedAlbum.albumartist}</h3>
                         <div className="content-header-badges">
                             <GenreBadge genre={!props.settingGenre ? props.selectedAlbum.genre : 'Updating...'} />
+
+                            <a href={rymUrl} target="_blank" rel="noopener noreferrer" className={buttonPrimary} style={{'marginLeft': 'auto'}}>Find on RYM</a>
                         </div>
                     </div>
                 </div>
                 
                 <div className="content-body">
                     <h3 className="content-body-title">
-                        {!props.fetchingGenres ?
-                            props.genreSuggestions?.suggested_genres.length ? 
-                                'Modify genre'
+                        {props.fetchingGenres
+                            ? 'Loading...'
+                            : props.genreSuggestions?.suggested_genres.length
+                                ? 'Modify genre'
                                 : 'Oops! We couldn\'t find any genres'
-                            : 'Loading...'}
+                        }
                     </h3>
                     {!props.fetchingGenres &&
                         <GenreList

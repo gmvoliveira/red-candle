@@ -27,9 +27,11 @@
     display: flex;
     flex-direction: column;
     padding-left: 2rem;
+    flex-grow: 1;
 }
 
 .content-header-badges {
+    display: flex;
     margin-top: auto;
 }
 

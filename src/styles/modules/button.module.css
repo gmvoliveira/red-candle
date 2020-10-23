@@ -1,5 +1,6 @@
 .hover:hover {
     outline: 0;
+    text-decoration: none;
 }
 .button {
     composes: hover;
@@ -8,6 +9,7 @@
     background-color: transparent;
     cursor: pointer;
     font-family: var(--font-body);
+    text-decoration: none;
 }
 .button[disabled] {
     pointer-events: none;
@@ -29,4 +31,16 @@
     color: var(--primary-color);
     transition: color .2s ease-in-out;
     margin: -0.5rem 0 -0.5rem auto;
+}
+
+.buttonDefault {
+    composes: button;
+    padding: .4rem 1rem;
+    border-radius: calc(var(--shape-border-radius) * 0.8);
+}
+
+.buttonPrimary {
+    composes: buttonDefault;
+    background-color: var(--primary-color);
+    color: var(--white);
 }
