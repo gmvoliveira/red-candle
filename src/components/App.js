@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import GirandoleClient from '../GirandoleClient'
-
 import AlbumList from './AlbumList'
 import AppContent from './AppContent'
 import AlbumLoader from './AlbumLoader'
 import AlbumFilter from './AlbumFilter'
 import { loadAlbums, toggleFetchingGenres, toggleSettingGenre, updateAlbum } from '../actions'
 
-import '../styles/objects/app.css'
-import '../styles/objects/sidebar.css'
+import { app } from '../styles/modules/app.module.css'
+import { sidebar } from '../styles/modules/sidebar.module.css'
 
 const girandoleClient = new GirandoleClient()
 
@@ -60,8 +59,8 @@ const App = (props) => {
     }, [selectedGenre])
 
     return (
-        <div className="app">
-            <div className="sidebar">
+        <div className={app}>
+            <div className={sidebar}>
                 <AlbumFilter />
                 { !props.fetchingAlbums
                     ? (<AlbumList albums={props.albums ?? []} />)
